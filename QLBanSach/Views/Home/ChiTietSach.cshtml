@@ -1,0 +1,46 @@
+﻿@model QLBanSach.Models.Sach
+
+@{
+    ViewData["Title"] = "Chi tiết sách";
+}
+
+<div class="container mt-4">
+
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src="~/Images/@Model.Anh"
+                 class="img-fluid rounded shadow"
+                 style="max-height: 420px; object-fit: cover;" />
+        </div>
+        <div class="col-md-8">
+            <h2 class="fw-bold">@Model.TenSach</h2>
+            <hr />
+
+            <p><strong>Tác giả:</strong> @Model.TacGia</p>
+            <p><strong>Nhà xuất bản:</strong> @Model.NhaXuatBan</p>
+            <p><strong>Năm XB:</strong> @Model.NamXuatBan</p>
+
+            <h4 class="text-primary fw-bold">
+                @String.Format("{0:N0} VNĐ", Model.Gia)
+            </h4>
+
+            <p><strong>Số lượng còn:</strong> @Model.SoLuong</p>
+            <p>
+                <strong>Thể loại:</strong>
+                @Model.TheLoai?.TenTheLoai
+            </p>
+
+            <div class="mt-3">
+                <h5 class="fw-bold">Mô tả</h5>
+                <div class="p-3 bg-light rounded shadow-sm">
+                    @Model.MoTa
+                </div>
+            </div>
+            <div class="mt-4">
+                <a class="btn btn-success px-4 me-2">Thêm vào giỏ</a>
+                <a class="btn btn-secondary px-4" asp-action="Index">Quay lại</a>
+            </div>
+        </div>
+    </div>
+
+</div>
