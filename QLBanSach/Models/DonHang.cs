@@ -18,6 +18,11 @@ namespace QLBanSach.Models
         [ForeignKey(nameof(MaNguoiDung))]
         public virtual NguoiDung? NguoiDung { get; set; }
 
+
+        [Required(ErrorMessage = "Địa chỉ nhận hàng không được để trống")]
+        [StringLength(200, ErrorMessage = "Địa chỉ nhận hàng tối đa 200 ký tự")]
+        public string DiaChiNhanHang { get; set; }
+
         [Required]
         public DateTime NgayDat { get; set; }
 

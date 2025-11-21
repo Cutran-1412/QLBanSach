@@ -1,15 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using QLBanSach.Data;
+using QLBanSach.Data.ChiTietDonHangRepository;
+using QLBanSach.Data.ChiTietGioHangRepository;
+using QLBanSach.Data.DonHangRepository;
+using QLBanSach.Data.GioHangRepository;
 using QLBanSach.Data.NguoiDungRepository;
 using QLBanSach.Data.SachRepository;
 using QLBanSach.Data.TheLoaiRepository;
+using QLBanSach.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext") ?? throw new InvalidOperationException("Connection string 'AppDbContext' not found.")));
 builder.Services.AddScoped<INguoiDungRepository, NguoiDungRepository>();
 builder.Services.AddScoped<ISacRepository,SachRepository>();
 builder.Services.AddScoped<ITheLoaiRepository, TheLoaiRepository>();
+builder.Services.AddScoped<IGioHangRepository, GioHangRepository>();
+builder.Services.AddScoped<IDonHangRepository, DonHangRepository>();
+builder.Services.AddScoped<IChiTietGioHangRepository, ChiTietGioHangRepository>();
+builder.Services.AddScoped<IChiTietDonHangRepository, ChiTietDonHangRepository>();
 builder.Services.AddSession();
 // Add services to the container.
 builder.Services.AddControllersWithViews();

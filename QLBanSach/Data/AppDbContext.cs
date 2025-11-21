@@ -24,9 +24,7 @@ namespace QLBanSach.Data
 
         public DbSet<QLBanSach.Models.ChiTietGioHang>? ChiTietGioHang { get; set; }
 
-        public DbSet<QLBanSach.Models.DonHang>? DonHang { get; set; }
 
-        public DbSet<QLBanSach.Models.ChiTietDonHang>? ChiTietDonHang { get; set; }
         private void Seed_NguoiDung(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<NguoiDung>().HasData(                    
@@ -213,6 +211,8 @@ namespace QLBanSach.Data
             Seed_NguoiDung(modelBuilder);
             Seed_TheLoai(modelBuilder);
             Seed_Sach(modelBuilder);
-        }
+        }     
+        public DbSet<QLBanSach.Models.DonHang>? DonHang { get; set; }
+        public DbSet<QLBanSach.Models.ChiTietDonHang>? ChiTietDonHang { get; set; }
     }
 }

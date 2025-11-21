@@ -59,7 +59,7 @@ namespace QLBanSach.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaChiTiet,MaDonHang,MaSach,SoLuong,DonGia")] ChiTietDonHang chiTietDonHang)
+        public async Task<IActionResult> Create([Bind("MaChiTiet,MaDonHang,MaSach,SoLuong")] ChiTietDonHang chiTietDonHang)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace QLBanSach.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MaChiTiet,MaDonHang,MaSach,SoLuong,DonGia")] ChiTietDonHang chiTietDonHang)
+        public async Task<IActionResult> Edit(string id, [Bind("MaChiTiet,MaDonHang,MaSach,SoLuong")] ChiTietDonHang chiTietDonHang)
         {
             if (id != chiTietDonHang.MaChiTiet)
             {

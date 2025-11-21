@@ -1,6 +1,25 @@
 ﻿@model QLBanSach.Models.NguoiDung
 
-<div class="d-flex justify-content-center align-items-center mt-5">
+<style>
+    input.form-control:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: #198754 !important;
+    }
+
+    .position-relative button.toggle-pass {
+        position: absolute;
+        top: 38px;
+        right: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        color: #198754;
+    }
+</style>
+
+<div class="d-flex justify-content-center align-items-center mt-5 mb-5">
     <div class="card shadow-sm p-4" style="width: 100%; max-width: 500px;">
         <h2 class="text-center mb-4">Đăng ký tài khoản</h2>
 
@@ -13,9 +32,10 @@
                 <span asp-validation-for="TaiKhoan" class="text-danger"></span>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 position-relative">
                 <label class="form-label">Mật khẩu</label>
-                <input asp-for="MatKhau" type="password" class="form-control" />
+                <input asp-for="MatKhau" type="password" id="password" class="form-control" />
+                <button type="button" id="togglePassword" class="toggle-pass">Hiện</button>
                 <span asp-validation-for="MatKhau" class="text-danger"></span>
             </div>
 
@@ -47,6 +67,12 @@
 
             <button type="submit" class="btn btn-success w-100">Đăng ký</button>
 
+            <div class="text-center mt-3">
+                <a href="/Account/Login" class="text-decoration-none">
+                    Đã có tài khoản? <b>Đăng nhập ngay</b>
+                </a>
+            </div>
+
             @if (ViewBag.Error != null)
             {
                 <div class="alert alert-danger mt-3 text-center">@ViewBag.Error</div>
@@ -57,4 +83,14 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.textContent = type === 'password' ? 'Hiện' : 'Ẩn';
+        });
+    </script>
 }

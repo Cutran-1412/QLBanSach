@@ -1,0 +1,90 @@
+﻿/* Table */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+    .table th, .table td {
+        vertical-align: middle !important;
+        text-align: center;
+    }
+
+    .table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+    }
+
+/* Ảnh sách */
+.img-thumbnail {
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Input số lượng */
+.input-group .form-control {
+    border-radius: 0;
+    height: 36px;
+}
+
+.input-group .btn {
+    border-radius: 0;
+    width: 30px;
+}
+
+/* Hover dòng table */
+.table tbody tr:hover {
+    background-color: #f1f8ff;
+    transition: background-color 0.3s;
+}
+
+/* Nút xóa */
+.btn-danger {
+    background-color: #ff5c5c;
+    border: none;
+}
+
+    .btn-danger:hover {
+        background-color: #ff3b3b;
+    }
+
+/* Nút thanh toán & tiếp tục mua sắm */
+.btn-primary {
+    background-color: #4CAF50;
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: #45a049;
+    }
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+/* Tổng cộng */
+#tong-cong {
+    font-size: 1.3em;
+    color: #e67e22;
+    font-weight: bold;
+}
+
+/* Responsive: table nhỏ trên mobile */
+@media(max-width: 768px) {
+    .table th, .table td {
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    .input-group {
+        width: 90px !important;
+    }
+}

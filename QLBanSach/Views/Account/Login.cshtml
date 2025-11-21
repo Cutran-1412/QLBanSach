@@ -12,9 +12,12 @@
                 <input type="text" name="username" class="form-control" required />
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 position-relative">
                 <label for="password" class="form-label">Mật khẩu</label>
-                <input type="password" name="password" class="form-control" required />
+                <input type="password" id="password" name="password" class="form-control" required />
+                <button type="button" id="togglePassword" style="position:absolute; top: 38px; right: 10px; background: none; border: none; cursor: pointer; font-weight:bold;">
+                    Hiện
+                </button>
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
@@ -32,3 +35,17 @@
         </p>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const passwordInput = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            togglePassword.textContent = type === 'password' ? 'Hiện' : 'Ẩn';
+        });
+    </script>
+}

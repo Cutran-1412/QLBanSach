@@ -12,6 +12,13 @@
 
 </head>
 <body>
+    @if (TempData["Message"] != null)
+    {
+        var type = TempData["MesseType"]?.ToString() ?? "success";
+        <div id="toast-messe" class="toast-messe @type">
+            @TempData["Message"]
+        </div>
+    }
     <div class="topbar d-flex justify-content-between">
         <div>
             <span>0999999999</span>
@@ -22,32 +29,89 @@
             <ul class="navbar-nav ms-auto flex-row">
                 @if (Context.Session.GetString("UserName") != null)
                 {
+                    var isAdmin = Context.Session.GetString("VaiTro") == "True";
+
                     <li class="nav-item">
-                        <span class="nav-link text-white fw-semibold">Xin chào, @Context.Session.GetString("UserName")</span>
+                        <form asp-controller="Account" asp-action="Details" method="post">
+                            <input type="hidden" name="id" value="@Context.Session.GetString("UserId")" />
+                            <button type="submit" class="nav-btn ms-2">
+                                Xin chào, @Context.Session.GetString("UserName")
+                            </button>
+                        </form>
                     </li>
+
+                    @if (isAdmin)
+                    {
+                        <li class="nav-item ms-2">
+                            <a class="nav-btn btn btn-warning" href="@Url.Action("Index", "Admin")">
+                                Quản lý
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item ms-2">
+                            <form method="get" action="@Url.Action("Index", "GioHang")" class="d-inline">
+                                <input type="hidden" name="id" value="@Context.Session.GetString("UserId")" />
+
+                                <button type="submit" class="nav-btn btn btn-primary">
+                                    Giỏ hàng
+                                </button>
+                            </form>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a class="nav-btn btn btn-success" href="@Url.Action("Orders", "Order")">
+                                Đơn hàng
+                            </a>
+                        </li>
+                    }
+
                     <li class="nav-item">
-                        <a class="nav-link btn btn-warning text-dark ms-2" asp-controller="Account" asp-action="Logout">Đăng xuất</a>
+                        <form asp-controller="Account" asp-action="Logout" method="post">
+                            <button type="submit" class="nav-btn ms-2">
+                                Đăng xuất
+                            </button>
+                        </form>
                     </li>
                 }
                 else
                 {
-                    <li class="nav-item">
-                        <a class="text-white me-3" asp-controller="Account" asp-action="Login">Đăng nhập</a>
+                    <li class="nav-item me-3">
+                        <button class="nav-btn"
+                                onclick="window.location.href='@Url.Action("Login", "Account")'">
+                            Đăng nhập
+                        </button>
                     </li>
+
                     <li class="nav-item">
-                        <a class="text-white" asp-controller="Account" asp-action="Create">Đăng ký</a>
+                        <button class="nav-btn"
+                                onclick="window.location.href='@Url.Action("Create", "Account")'">
+                            Đăng ký
+                        </button>
                     </li>
                 }
             </ul>
+
         </div>
     </div>
     <header>
         <nav class="navbar navbar-expand-sm bg-white border-bottom shadow-sm mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                <form class="d-flex mx-auto" style="width:60%; max-width:600px;">
-                    <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm" style="height:48px; font-size:16px;">
-                    <button class="btn btn-primary ms-2" style="height:48px; font-size:16px; width:140px;">Tìm kiếm</button>
+
+                <form class="d-flex mx-auto" asp-action="Index" asp-controller="Home" method="get"
+                      style="width:60%; max-width:600px; position:relative;">
+
+                    <div class="floating-group me-2" style="width:100%;">
+                        <input type="text" id="TenSach" name="TenSach"
+                               class="form-control floating-input"
+                               placeholder=" ">
+                        <label for="TenSach" class="floating-label">Tìm kiếm sản phẩm</label>
+                    </div>
+
+                    <button class="btn btn-primary ms-2" style="height:48px; font-size:16px; width:140px;">
+                        Tìm kiếm
+                    </button>
                 </form>
             </div>
         </nav>
@@ -58,14 +122,23 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    @* <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2025 - QLBanSach - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const toast = document.getElementById('toast-messe');
+            if (toast) {
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            }
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

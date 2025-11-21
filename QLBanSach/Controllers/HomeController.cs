@@ -18,15 +18,20 @@ namespace QLBanSach.Controllers
         }
 
 
-        public IActionResult Index(string? MaTheLoai)
+        public IActionResult Index(string? MaTheLoai, string? TenSach)
         {
-            ViewBag.Sach= _sacRepository.GetAll();
-            ViewBag.TheLoai = _theLoaiRepository.GetAll();
+            var sach = _sacRepository.GetAll();
+            var theloai = _theLoaiRepository.GetAll();
             if (MaTheLoai != null)
             {
-                ViewBag.Sach = _sacRepository.GetByTl(MaTheLoai);
-                ViewBag.TheLoai = _theLoaiRepository.GetAll();
+                sach = _sacRepository.GetByTl(MaTheLoai);
             }
+            if (TenSach != null)
+            {
+                sach = _sacRepository.GetByName(TenSach);
+            }
+            ViewBag.TheLoai = theloai;
+            ViewBag.Sach = sach;
             return View();
         }
 

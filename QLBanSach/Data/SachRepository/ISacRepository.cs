@@ -11,5 +11,6 @@ namespace QLBanSach.Data.SachRepository
         void Delete(Sach sach);
         void Save();
         IEnumerable<Sach> GetByTl(string theloai);
+        IEnumerable<Sach> GetByName(string name);
     }
 }

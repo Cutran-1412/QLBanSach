@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/admin.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="d-flex min-vh-100">
+        <!-- Sidebar -->
+        <nav class="sidebar bg-light p-3">
+            <h3 class="mb-4">Admin Panel</h3>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="Index">Dashboard</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="ManageUsers">Quản lý người dùng</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="ManageOrders">Quản lý đơn hàng</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn btn-danger w-100">Đăng xuất</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main content -->
+        <div class="flex-grow-1 p-4">
+            <header class="mb-4">
+                <h2>@ViewData["Title"]</h2>
+            </header>
+            <main>
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

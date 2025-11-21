@@ -1,0 +1,67 @@
+﻿@model QLBanSach.Models.NguoiDung
+
+<div class="container-fluid min-vh-100 d-flex flex-column p-4">
+    <h2 class="mb-4">Sửa thông tin người dùng</h2>
+    <form asp-action="Edit" method="post" class="flex-grow-1 d-flex flex-column" style="min-height: 0;">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="MaNguoiDung" />
+
+        <div class="mb-3 w-100">
+            <label class="form-label">Tên đăng nhập</label>
+            <input asp-for="TaiKhoan" class="form-control" />
+            <span asp-validation-for="TaiKhoan" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 w-100 position-relative">
+            <label class="form-label">Mật khẩu</label>
+            <input asp-for="MatKhau" type="password" id="password" class="form-control pe-5" />
+            <button type="button" id="togglePassword"
+                    class="btn position-absolute top-50 end-0 translate-middle-y me-2 p-0"
+                    style="background: none; border: none; width: 40px; height: 40px; cursor: pointer;">
+                <img src="/path/to/your/icon-eye.png" alt="Hiện/Ẩn" style="width: 20px; height: 20px;">
+            </button>
+            <span asp-validation-for="MatKhau" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 w-100">
+            <label class="form-label">Họ tên</label>
+            <input asp-for="HoTen" class="form-control" />
+            <span asp-validation-for="HoTen" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 w-100">
+            <label class="form-label">Email</label>
+            <input asp-for="Email" type="email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 w-100">
+            <label class="form-label">Số điện thoại</label>
+            <input asp-for="SoDienThoai" class="form-control" />
+            <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 w-100">
+            <label class="form-label">Địa chỉ</label>
+            <input asp-for="DiaChi" class="form-control" />
+            <span asp-validation-for="DiaChi" class="text-danger"></span>
+        </div>
+
+        <div class="mt-auto d-flex">
+            <button type="submit" class="btn btn-success me-2">Lưu thay đổi</button>
+            <a asp-action="Details" asp-route-id="@Model?.MaNguoiDung" class="btn btn-secondary">Quay lại</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+        });
+    </script>
+}

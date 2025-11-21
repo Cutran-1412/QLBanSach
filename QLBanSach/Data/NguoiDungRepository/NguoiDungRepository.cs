@@ -14,7 +14,9 @@ namespace QLBanSach.Data.NguoiDungRepository
 
         public void Add(NguoiDung NguoiDung)=>_context.NguoiDung.Add(NguoiDung);
 
-        public IEnumerable<NguoiDung> GetAll()=>_context.NguoiDung.ToList();    
+        public IEnumerable<NguoiDung> GetAll()=>_context.NguoiDung.ToList();
+
+        public NguoiDung GetById(string id) => _context.NguoiDung.Find(id);
 
         public NguoiDung GetByName(string name) => _context.NguoiDung.FirstOrDefault(x => x.TaiKhoan == name);
 

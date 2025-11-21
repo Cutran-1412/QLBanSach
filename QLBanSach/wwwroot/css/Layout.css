@@ -68,3 +68,114 @@
     color: #0d6efd;
     font-weight: bold;
 }
+
+.navbar-nav .nav-btn {
+    background-color: transparent !important; /* override bootstrap */
+    color: white !important;
+    border: 1px solid white !important;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+    /* Hover: bỏ viền hoàn toàn và đổi màu */
+    .navbar-nav .nav-btn:hover {
+        border: none !important; /* bắt buộc override bootstrap */
+        background-color: #ffffff33 !important; /* màu nền nhẹ khi hover */
+        color: black !important;
+    }
+
+
+
+
+.floating-group {
+    position: relative;
+}
+
+
+.floating-input {
+    height: 48px;
+    padding: 14px 12px 0 12px;
+    font-size: 16px;
+    border: 1px solid #dadce0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Label bình thường */
+.floating-label {
+    position: absolute;
+    left: 12px;
+    top: 14px;
+    font-size: 16px;
+    color: #80868b;
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+/* Hiệu ứng focus */
+.floating-input:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 1px #1a73e8;
+    outline: none;
+}
+
+    /* Focus => label bay lên */
+.floating-input:focus + .floating-label {
+    top: -6px;
+    left: 10px;
+    font-size: 12px;
+    background: white;
+    padding: 0 4px;
+    color: #1a73e8;
+}
+
+
+.floating-input:not(:placeholder-shown) + .floating-label {
+    top: -6px;
+    left: 10px;
+    font-size: 12px;
+    background: white;
+    padding: 0 4px;
+    color: #1a73e8;
+}
+
+
+.toast-messe {
+    position: fixed;
+    top: 20px; /* cách mép trên */
+    left: 50%; /* căn giữa ngang */
+    transform: translateX(-50%) translateY(-20px); /* animation trượt từ trên xuống */
+    color: #fff;
+    padding: 20px 40px; /* padding lớn hơn */
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    z-index: 1050;
+    opacity: 0;
+    transition: all 0.4s ease;
+    font-size: 18px; /* chữ to hơn */
+    min-width: 300px; /* rộng hơn */
+    max-width: 600px; /* tránh quá to trên màn hình nhỏ */
+    text-align: center;
+}
+
+.toast-messe.success {
+    background-color: #007bff;
+}
+    .toast-messe.error {
+        background-color: #dc3545;
+    }
+    /* đỏ */
+    .toast-messe.info {
+        background-color: #28a745;
+    }
+    /* xanh lá */
+
+    .toast-messe.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }

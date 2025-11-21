@@ -1,0 +1,23 @@
+﻿.user-profile .button-group a.btn,
+.user-profile .button-group button.btn-back {
+    background-color: #007bff; /* xanh dương chuẩn bootstrap */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    text-decoration: none;
+}
+
+    .user-profile .button-group a.btn:hover,
+    .user-profile .button-group button.btn-back:hover {
+        background-color: #0056b3; /* xanh đậm khi hover */
+        transform: translateY(-1px);
+    }
+
+    .user-profile .button-group a.btn:active,
+    .user-profile .button-group button.btn-back:active {
+        transform: scale(0.97);
+    }

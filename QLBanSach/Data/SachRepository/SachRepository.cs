@@ -19,6 +19,8 @@ namespace QLBanSach.Data.SachRepository
 
         public Sach GetById(string id) => _context.Sach.Find(id);
 
+        public IEnumerable<Sach> GetByName(string name)=>_context.Sach.Where(s => s.TenSach.Contains(name)).ToList();
+
         public IEnumerable<Sach> GetByTl(string theloai)=>_context.Sach.Where(s=>s.MaTheLoai==theloai).ToList();
 
         public void Save()=>_context.SaveChanges();

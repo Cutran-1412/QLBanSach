@@ -22,6 +22,11 @@
                 <select asp-for="MaNguoiDung" class ="form-control" asp-items="ViewBag.MaNguoiDung"></select>
             </div>
             <div class="form-group">
+                <label asp-for="DiaChiNhanHang" class="control-label"></label>
+                <input asp-for="DiaChiNhanHang" class="form-control" />
+                <span asp-validation-for="DiaChiNhanHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="NgayDat" class="control-label"></label>
                 <input asp-for="NgayDat" class="form-control" />
                 <span asp-validation-for="NgayDat" class="text-danger"></span>
