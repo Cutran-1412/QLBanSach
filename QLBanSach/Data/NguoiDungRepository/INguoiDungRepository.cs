@@ -10,6 +10,9 @@ namespace QLBanSach.Data.NguoiDungRepository
         void Add(NguoiDung NguoiDung);
         void Save();
         bool LogIn(string user,string password);
-        
+        void Update(NguoiDung nguoidung);
+        void Delete(NguoiDung nguoidung);
+        IEnumerable<NguoiDung> GetPaged(int page, int pageSize);
+        int GetTotalCount();
     }
 }

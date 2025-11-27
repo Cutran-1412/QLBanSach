@@ -1,59 +1,38 @@
 ﻿@model IEnumerable<QLBanSach.Models.DonHang>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách đơn hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NguoiDung)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiaChiNhanHang)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NgayDat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrangThai)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TongTien)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.First().MaDonHang)</th>
+            <th>@Html.DisplayNameFor(model => model.First().MaNguoiDung)</th>
+            <th>@Html.DisplayNameFor(model => model.First().DiaChiNhanHang)</th>
+            <th>@Html.DisplayNameFor(model => model.First().NgayDat)</th>
+            <th>@Html.DisplayNameFor(model => model.First().TrangThai)</th>
+            <th>@Html.DisplayNameFor(model => model.First().TongTien)</th>
+            <th>Hành động</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NguoiDung.MaNguoiDung)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChiNhanHang)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayDat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrangThai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TongTien)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MaDonHang">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MaDonHang">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MaDonHang">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaDonHang</td>
+                <td>@item.MaNguoiDung</td>
+                <td>@item.DiaChiNhanHang</td>
+                <td>@item.NgayDat.ToString("dd/MM/yyyy")</td>
+                <td>@item.TrangThai</td>
+                <td>@String.Format("{0:N0} vn₫", item.TongTien)</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.MaDonHang">Chi tiết</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

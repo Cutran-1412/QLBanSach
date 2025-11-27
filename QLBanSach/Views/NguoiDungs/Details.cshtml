@@ -1,60 +1,59 @@
 ﻿@model QLBanSach.Models.NguoiDung
-
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết người dùng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<link href="~/css/account.css" rel="stylesheet" />
 
-<h1>Details</h1>
+<div class="container mt-4 user-profile">
+    <div class="card shadow-sm p-4">
+        <div class="row">
 
-<div>
-    <h4>NguoiDung</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaiKhoan)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaiKhoan)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MatKhau)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MatKhau)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HoTen)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HoTen)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SoDienThoai)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SoDienThoai)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VaiTro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VaiTro)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.MaNguoiDung">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+            <!-- Cột trái: avatar và info cơ bản -->
+            <div class="col-md-3 text-center border-end">
+                <img src="~/Avatar/Avatar.jpg"
+                     alt="Avatar"
+                     class="img-fluid rounded-circle mb-3"
+                     style="width: 180px; height: 180px; object-fit: cover;">
+
+                <h5 class="mt-2">@Model.HoTen</h5>
+                <p class="text-muted">@Model.Email</p>
+
+                <div class="d-flex justify-content-center mt-3" style="gap: 10px;">
+                    <a asp-action="Edit" asp-route-id="@Model.MaNguoiDung" class="btn btn-primary">
+                        Chỉnh sửa
+                    </a>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        Quay lại
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cột phải: thông tin chi tiết -->
+            <div class="col-md-9">
+                <h4 class="mb-3">Thông tin tài khoản</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-3 fw-bold">Tài khoản</dt>
+                    <dd class="col-sm-9">@Model.TaiKhoan</dd>
+
+                    <dt class="col-sm-3 fw-bold">Họ tên</dt>
+                    <dd class="col-sm-9">@Model.HoTen</dd>
+
+                    <dt class="col-sm-3 fw-bold">Email</dt>
+                    <dd class="col-sm-9">@Model.Email</dd>
+
+                    <dt class="col-sm-3 fw-bold">Số điện thoại</dt>
+                    <dd class="col-sm-9">@Model.SoDienThoai</dd>
+
+                    <dt class="col-sm-3 fw-bold">Địa chỉ</dt>
+                    <dd class="col-sm-9">@Model.DiaChi</dd>
+
+                    <dt class="col-sm-3 fw-bold">Vai trò</dt>
+                    <dd class="col-sm-9">@(Model.VaiTro ? "Admin" : "User")</dd>
+                </dl>
+            </div>
+
+        </div>
+    </div>
 </div>

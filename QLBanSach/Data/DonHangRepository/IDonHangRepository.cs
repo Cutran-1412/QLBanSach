@@ -6,10 +6,11 @@ namespace QLBanSach.Data.DonHangRepository
     {
         IEnumerable<DonHang> GetAll();
         IEnumerable<DonHang> GetIDNguoiDung(string manguoidung);
+        DonHang GetCTDH(string madonhang);
         void Add(DonHang donHang);
         void Update(DonHang donHang);
         void Delete(DonHang donHang);
         void Save();
-        
+        DonHang GetById(string id);
     }
 }

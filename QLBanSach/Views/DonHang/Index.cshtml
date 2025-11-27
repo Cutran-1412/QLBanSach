@@ -1,0 +1,100 @@
+﻿@model IEnumerable<QLBanSach.Models.DonHang>
+
+@{
+    ViewData["Title"] = "Danh sách đơn hàng";
+}
+
+<h2 class="mb-4">Danh sách đơn hàng</h2>
+
+<table class="table table-bordered text-center align-middle table-hover custom-table-blue">
+    <thead class="custom-header-blue">
+        <tr>
+            <th>Mã đơn hàng</th>
+            <th>Mã người dùng</th>
+            <th>Địa chỉ</th>
+            <th>Ngày đặt</th>
+            <th>Trạng thái</th>
+            <th>Tổng tiền</th>
+            <th>Chi tiết</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaDonHang</td>
+                    <td>@item.MaNguoiDung</td>
+                    <td>@item.DiaChiNhanHang</td>
+                    <td>@item.NgayDat.ToString("dd/MM/yyyy HH:mm")</td>
+
+                    <td>
+                        <span class="badge bg-primary text-light px-3 py-2">@item.TrangThai</span>
+                    </td>
+
+                    <td>@item.TongTien.ToString("N0") đ</td>
+                    <td>
+                        <a href="@Url.Action("Detail", "DonHang", new { MaDonHang = item.MaDonHang })"
+                           class="btn btn-sm btn-primary btn-view">
+                            Xem
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-danger fw-bold">Không có đơn hàng nào.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<style>
+    /* Màu xanh chủ đạo của website */
+    :root {
+        --primary-blue: #0d6efd;
+        --primary-blue-light: #bcd8ff;
+        --primary-blue-hover: #eaf3ff;
+    }
+
+    /* Viền bảng xanh */
+    .custom-table-blue {
+        border: 2px solid var(--primary-blue);
+    }
+
+        .custom-table-blue td,
+        .custom-table-blue th {
+            border: 1px solid var(--primary-blue);
+        }
+
+    /* Header xanh đậm đồng bộ navbar/nút */
+    .custom-header-blue {
+        background-color: var(--primary-blue);
+        color: white;
+        font-weight: 600;
+    }
+
+    /* Hover mềm nhẹ */
+    .custom-table-blue tbody tr:hover {
+        background-color: var(--primary-blue-hover);
+    }
+
+    /* Nút xem thống nhất màu */
+    .btn-view {
+        background-color: var(--primary-blue) !important;
+        border-color: var(--primary-blue) !important;
+        color: white !important;
+        font-weight: 500;
+        padding: 6px 15px;
+        border-radius: 6px;
+    }
+
+        .btn-view:hover {
+            background-color: #0953c6 !important;
+        }
+</style>

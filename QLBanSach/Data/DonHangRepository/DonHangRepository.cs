@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 using QLBanSach.Models;
 
 namespace QLBanSach.Data.DonHangRepository
@@ -24,6 +25,9 @@ namespace QLBanSach.Data.DonHangRepository
         public void Delete(DonHang donHang)=>_context.DonHang.Remove(donHang);
 
         public void Save()=>_context.SaveChanges();
-        
+
+        public DonHang GetCTDH(string madonhang)=>_context.DonHang.Include(s=>s.ChiTietDonHangs).ThenInclude(ct => ct.Sach).FirstOrDefault(dh => dh.MaDonHang == madonhang);
+
+        public DonHang GetById(string id) => _context.DonHang.Find(id);
     }
 }

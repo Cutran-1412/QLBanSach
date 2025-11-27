@@ -6,49 +6,44 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QLBanSach.Data;
+using QLBanSach.Data.DonHangRepository;
+using QLBanSach.Data.NguoiDungRepository;
 using QLBanSach.Models;
 
 namespace QLBanSach.Controllers
 {
     public class DonHangsController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IDonHangRepository _donHangRepository;
+        private readonly INguoiDungRepository _nguoiDungRepository;
 
-        public DonHangsController(AppDbContext context)
+        public DonHangsController(IDonHangRepository donHangRepository, INguoiDungRepository nguoiDungRepository)
         {
-            _context = context;
+            _donHangRepository = donHangRepository;
+            _nguoiDungRepository = nguoiDungRepository;
         }
 
+
+
         // GET: DonHangs
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var appDbContext = _context.DonHang.Include(d => d.NguoiDung);
-            return View(await appDbContext.ToListAsync());
+            var donghang = _donHangRepository.GetAll();
+            return View(donghang);
         }
 
         // GET: DonHangs/Details/5
-        public async Task<IActionResult> Details(string id)
+        public IActionResult Details(string id)
         {
-            if (id == null || _context.DonHang == null)
-            {
-                return NotFound();
-            }
-
-            var donHang = await _context.DonHang
-                .Include(d => d.NguoiDung)
-                .FirstOrDefaultAsync(m => m.MaDonHang == id);
-            if (donHang == null)
-            {
-                return NotFound();
-            }
-
+            var donHang = _donHangRepository.GetCTDH(id);
             return View(donHang);
         }
 
         // GET: DonHangs/Create
         public IActionResult Create()
         {
-            ViewData["MaNguoiDung"] = new SelectList(_context.NguoiDung, "MaNguoiDung", "MaNguoiDung");
+            var nguoidung = _nguoiDungRepository.GetAll();
+            ViewData["MaNguoiDung"] = new SelectList(nguoidung, "MaNguoiDung", "MaNguoiDung");
             return View();
         }
 
@@ -61,28 +56,25 @@ namespace QLBanSach.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(donHang);
-                await _context.SaveChangesAsync();
+                _donHangRepository.Add(donHang);
+                _donHangRepository.Save();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MaNguoiDung"] = new SelectList(_context.NguoiDung, "MaNguoiDung", "MaNguoiDung", donHang.MaNguoiDung);
+            var nguoidung = _nguoiDungRepository.GetAll();
+            ViewData["MaNguoiDung"] = new SelectList(nguoidung, "MaNguoiDung", "MaNguoiDung");
             return View(donHang);
         }
 
         // GET: DonHangs/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public IActionResult Edit(string id)
         {
-            if (id == null || _context.DonHang == null)
-            {
-                return NotFound();
-            }
-
-            var donHang = await _context.DonHang.FindAsync(id);
+            var donHang = _donHangRepository.GetById(id);
             if (donHang == null)
             {
                 return NotFound();
             }
-            ViewData["MaNguoiDung"] = new SelectList(_context.NguoiDung, "MaNguoiDung", "MaNguoiDung", donHang.MaNguoiDung);
+            var nguoidung = _nguoiDungRepository.GetAll();
+            ViewData["MaNguoiDung"] = new SelectList(nguoidung, "MaNguoiDung", "MaNguoiDung");
             return View(donHang);
         }
 
@@ -102,37 +94,24 @@ namespace QLBanSach.Controllers
             {
                 try
                 {
-                    _context.Update(donHang);
-                    await _context.SaveChangesAsync();
+                    _donHangRepository.Update(donHang);
+                    _donHangRepository.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DonHangExists(donHang.MaDonHang))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MaNguoiDung"] = new SelectList(_context.NguoiDung, "MaNguoiDung", "MaNguoiDung", donHang.MaNguoiDung);
+            var nguoidung = _nguoiDungRepository.GetAll();
+            ViewData["MaNguoiDung"] = new SelectList(nguoidung, "MaNguoiDung", "MaNguoiDung");
             return View(donHang);
         }
 
         // GET: DonHangs/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public IActionResult Delete(string id)
         {
-            if (id == null || _context.DonHang == null)
-            {
-                return NotFound();
-            }
-
-            var donHang = await _context.DonHang
-                .Include(d => d.NguoiDung)
-                .FirstOrDefaultAsync(m => m.MaDonHang == id);
+            var donHang = _donHangRepository.GetById(id);
             if (donHang == null)
             {
                 return NotFound();
@@ -146,23 +125,14 @@ namespace QLBanSach.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (_context.DonHang == null)
-            {
-                return Problem("Entity set 'AppDbContext.DonHang'  is null.");
-            }
-            var donHang = await _context.DonHang.FindAsync(id);
+            var donHang = _donHangRepository.GetById(id);
             if (donHang != null)
             {
-                _context.DonHang.Remove(donHang);
-            }
-            
-            await _context.SaveChangesAsync();
+                _donHangRepository.Delete(donHang);
+                _donHangRepository.Save();
+            }     
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DonHangExists(string id)
-        {
-          return (_context.DonHang?.Any(e => e.MaDonHang == id)).GetValueOrDefault();
-        }
     }
 }

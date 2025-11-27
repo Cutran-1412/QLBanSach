@@ -6,37 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QLBanSach.Data;
+using QLBanSach.Data.TheLoaiRepository;
 using QLBanSach.Models;
 
 namespace QLBanSach.Controllers
 {
     public class TheLoaisController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly ITheLoaiRepository _theLoaiRepository;
 
-        public TheLoaisController(AppDbContext context)
+        public TheLoaisController(ITheLoaiRepository theLoaiRepository)
         {
-            _context = context;
+            _theLoaiRepository = theLoaiRepository;
         }
 
         // GET: TheLoais
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-              return _context.TheLoai != null ? 
-                          View(await _context.TheLoai.ToListAsync()) :
-                          Problem("Entity set 'AppDbContext.TheLoai'  is null.");
+            var theloai = _theLoaiRepository.GetAll();
+            return View(theloai);
         }
 
         // GET: TheLoais/Details/5
-        public async Task<IActionResult> Details(string id)
+        public IActionResult Details(string id)
         {
-            if (id == null || _context.TheLoai == null)
-            {
-                return NotFound();
-            }
-
-            var theLoai = await _context.TheLoai
-                .FirstOrDefaultAsync(m => m.MaTheLoai == id);
+            var theLoai = _theLoaiRepository.GetById(id);
             if (theLoai == null)
             {
                 return NotFound();
@@ -56,26 +50,21 @@ namespace QLBanSach.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaTheLoai,TenTheLoai")] TheLoai theLoai)
+        public IActionResult Create(TheLoai theLoai)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(theLoai);
-                await _context.SaveChangesAsync();
+                _theLoaiRepository.Add(theLoai);
+                _theLoaiRepository.Save();
                 return RedirectToAction(nameof(Index));
             }
             return View(theLoai);
         }
 
         // GET: TheLoais/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public IActionResult Edit(string id)
         {
-            if (id == null || _context.TheLoai == null)
-            {
-                return NotFound();
-            }
-
-            var theLoai = await _context.TheLoai.FindAsync(id);
+            var theLoai = _theLoaiRepository.GetById(id);
             if (theLoai == null)
             {
                 return NotFound();
@@ -88,30 +77,18 @@ namespace QLBanSach.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MaTheLoai,TenTheLoai")] TheLoai theLoai)
+        public IActionResult Edit(string id, [Bind("MaTheLoai,TenTheLoai")] TheLoai theLoai)
         {
-            if (id != theLoai.MaTheLoai)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(theLoai);
-                    await _context.SaveChangesAsync();
+                    _theLoaiRepository.Update(theLoai);
+                    _theLoaiRepository.Delete(theLoai);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TheLoaiExists(theLoai.MaTheLoai))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -119,15 +96,9 @@ namespace QLBanSach.Controllers
         }
 
         // GET: TheLoais/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public IActionResult Delete(string id)
         {
-            if (id == null || _context.TheLoai == null)
-            {
-                return NotFound();
-            }
-
-            var theLoai = await _context.TheLoai
-                .FirstOrDefaultAsync(m => m.MaTheLoai == id);
+            var theLoai = _theLoaiRepository.GetById(id);
             if (theLoai == null)
             {
                 return NotFound();
@@ -139,25 +110,16 @@ namespace QLBanSach.Controllers
         // POST: TheLoais/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public IActionResult DeleteConfirmed(string id)
         {
-            if (_context.TheLoai == null)
-            {
-                return Problem("Entity set 'AppDbContext.TheLoai'  is null.");
-            }
-            var theLoai = await _context.TheLoai.FindAsync(id);
+            var theLoai = _theLoaiRepository.GetById(id);
             if (theLoai != null)
             {
-                _context.TheLoai.Remove(theLoai);
+                _theLoaiRepository.Delete(theLoai);
+                _theLoaiRepository.Save();
             }
-            
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TheLoaiExists(string id)
-        {
-          return (_context.TheLoai?.Any(e => e.MaTheLoai == id)).GetValueOrDefault();
-        }
     }
 }

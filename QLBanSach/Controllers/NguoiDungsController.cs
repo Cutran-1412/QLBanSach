@@ -6,37 +6,40 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QLBanSach.Data;
+using QLBanSach.Data.NguoiDungRepository;
 using QLBanSach.Models;
 
 namespace QLBanSach.Controllers
 {
     public class NguoiDungsController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly INguoiDungRepository _nguoiDungRepository;
 
-        public NguoiDungsController(AppDbContext context)
+        public NguoiDungsController(INguoiDungRepository nguoiDungRepository)
         {
-            _context = context;
+            _nguoiDungRepository = nguoiDungRepository;
         }
 
+
+
         // GET: NguoiDungs
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int page = 1)
         {
-              return _context.NguoiDung != null ? 
-                          View(await _context.NguoiDung.ToListAsync()) :
-                          Problem("Entity set 'AppDbContext.NguoiDung'  is null.");
+            int pageSize = 10;
+            int totalItems = _nguoiDungRepository.GetTotalCount();
+
+            var items = _nguoiDungRepository.GetPaged(page, pageSize);
+
+            ViewBag.Page = page;
+            ViewBag.TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+            return View(items);
         }
 
         // GET: NguoiDungs/Details/5
-        public async Task<IActionResult> Details(string id)
+        public IActionResult Details(string id)
         {
-            if (id == null || _context.NguoiDung == null)
-            {
-                return NotFound();
-            }
-
-            var nguoiDung = await _context.NguoiDung
-                .FirstOrDefaultAsync(m => m.MaNguoiDung == id);
+            var nguoiDung = _nguoiDungRepository.GetById(id);
             if (nguoiDung == null)
             {
                 return NotFound();
@@ -44,10 +47,24 @@ namespace QLBanSach.Controllers
 
             return View(nguoiDung);
         }
-
+        private string GenerateMaNguoiDung()
+        {
+            var lastUser = _nguoiDungRepository.GetAll()
+            .Where(u => u.MaNguoiDung != null && u.MaNguoiDung.StartsWith("ND"))
+            .Select(u =>
+            {
+                int num;
+                return int.TryParse(u.MaNguoiDung.Substring(2), out num) ? num : 0;
+            })
+            .OrderByDescending(num => num)
+            .FirstOrDefault();
+            int nextNumber = lastUser + 1;
+            return $"ND{nextNumber:00}";
+        }
         // GET: NguoiDungs/Create
         public IActionResult Create()
         {
+            ViewBag.MaNguoiDung = GenerateMaNguoiDung();
             return View();
         }
 
@@ -56,26 +73,21 @@ namespace QLBanSach.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaNguoiDung,TaiKhoan,MatKhau,HoTen,Email,SoDienThoai,DiaChi,VaiTro")] NguoiDung nguoiDung)
+        public IActionResult Create(NguoiDung nguoiDung)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(nguoiDung);
-                await _context.SaveChangesAsync();
+                _nguoiDungRepository.Add(nguoiDung);
+                _nguoiDungRepository.Save();
                 return RedirectToAction(nameof(Index));
             }
             return View(nguoiDung);
         }
 
         // GET: NguoiDungs/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public IActionResult Edit(string id)
         {
-            if (id == null || _context.NguoiDung == null)
-            {
-                return NotFound();
-            }
-
-            var nguoiDung = await _context.NguoiDung.FindAsync(id);
+            var nguoiDung = _nguoiDungRepository.GetById(id);
             if (nguoiDung == null)
             {
                 return NotFound();
@@ -88,30 +100,18 @@ namespace QLBanSach.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MaNguoiDung,TaiKhoan,MatKhau,HoTen,Email,SoDienThoai,DiaChi,VaiTro")] NguoiDung nguoiDung)
+        public IActionResult Edit(string id, NguoiDung nguoiDung)
         {
-            if (id != nguoiDung.MaNguoiDung)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(nguoiDung);
-                    await _context.SaveChangesAsync();
+                    _nguoiDungRepository.Update(nguoiDung);
+                    _nguoiDungRepository.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!NguoiDungExists(nguoiDung.MaNguoiDung))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -119,45 +119,28 @@ namespace QLBanSach.Controllers
         }
 
         // GET: NguoiDungs/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public IActionResult Delete(string id)
         {
-            if (id == null || _context.NguoiDung == null)
-            {
-                return NotFound();
-            }
-
-            var nguoiDung = await _context.NguoiDung
-                .FirstOrDefaultAsync(m => m.MaNguoiDung == id);
+            var nguoiDung = _nguoiDungRepository.GetById(id);
             if (nguoiDung == null)
             {
                 return NotFound();
             }
-
             return View(nguoiDung);
         }
 
         // POST: NguoiDungs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public IActionResult DeleteConfirmed(string id)
         {
-            if (_context.NguoiDung == null)
-            {
-                return Problem("Entity set 'AppDbContext.NguoiDung'  is null.");
-            }
-            var nguoiDung = await _context.NguoiDung.FindAsync(id);
+            var nguoiDung = _nguoiDungRepository.GetById(id);
             if (nguoiDung != null)
             {
-                _context.NguoiDung.Remove(nguoiDung);
+                _nguoiDungRepository.Delete(nguoiDung);
+                _nguoiDungRepository.Save();
             }
-            
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool NguoiDungExists(string id)
-        {
-          return (_context.NguoiDung?.Any(e => e.MaNguoiDung == id)).GetValueOrDefault();
         }
     }
 }

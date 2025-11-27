@@ -4,38 +4,140 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Admin</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link href="~/css/admin.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/admin.css" />
+
+    <style>
+        body {
+            background-color: #eef3fb;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #0d6efd, #0b5cd4);
+            color: white;
+            padding-top: 25px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+        }
+
+            .sidebar h3 {
+                text-align: center;
+                font-size: 22px;
+                font-weight: bold;
+            }
+
+            .sidebar .nav-link {
+                padding: 12px 18px;
+                border-radius: 10px;
+                font-size: 16px;
+                color: #e6e6e6 !important;
+                transition: 0.25s;
+            }
+
+                .sidebar .nav-link:hover {
+                    background: rgba(255, 255, 255, 0.2);
+                    color: #ffffff !important;
+                    font-weight: 700;
+                    transform: translateX(6px);
+                }
+
+                .sidebar .nav-link.active {
+                    background: white;
+                    color: #0d6efd !important;
+                    font-weight: 700;
+                }
+
+        /* Main content wrapper */
+        .main-wrapper {
+            flex-grow: 1;
+            padding: 20px 30px;
+        }
+
+        /* Header */
+        .admin-header {
+            background: white;
+            border-left: 5px solid #0d6efd;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        /* Main Content Box */
+        main {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+        }
+    </style>
 </head>
+
 <body>
     <div class="d-flex min-vh-100">
+
         <!-- Sidebar -->
-        <nav class="sidebar bg-light p-3">
-            <h3 class="mb-4">Admin Panel</h3>
-            <ul class="nav flex-column">
+        <nav class="sidebar">
+            <h3 class="mb-4">📘 ADMIN WebBanSach</h3>
+
+            <ul class="nav flex-column px-3">
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="Index">Dashboard</a>
+                    <a class="nav-link @(ViewData["Title"]?.ToString() == "Dashboard" ? "active" : "")"
+                       asp-controller="Admin" asp-action="Index">
+                        📊 Home
+                    </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="ManageUsers">Quản lý người dùng</a>
+                    <a class="nav-link @(ViewData["Title"]?.ToString() == "Quản lý người dùng" ? "active" : "")"
+                       asp-controller="NguoiDungs" asp-action="Index">
+                        👤 Quản lý người dùng
+                    </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="ManageOrders">Quản lý đơn hàng</a>
+                    <a class="nav-link @(ViewData["Title"]?.ToString() == "Quản lý đơn hàng" ? "active" : "")"
+                       asp-controller="DonHangs" asp-action="Index">
+                        🧾 Quản lý đơn hàng
+                    </a>
                 </li>
                 <li class="nav-item mb-2">
+                    <a class="nav-link @(ViewData["Title"]?.ToString() == "Quản lý thể loại" ? "active" : "")"
+                       asp-controller="TheLoais" asp-action="Index">
+                        📚 Quản lý thể loại
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link @(ViewData["Title"]?.ToString() == "Quản lý sách" ? "active" : "")"
+                       asp-controller="Sachs" asp-action="Index">
+                        📖 Quản lý sách
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link @(ViewData["Title"]?.ToString() == "Trang chính" ? "active" : "")"
+                       asp-controller="Home" asp-action="Index">
+                        🏠 Quay lại trang chính
+                    </a>
+                </li>
+
+                <li class="nav-item mt-3">
                     <form asp-controller="Account" asp-action="Logout" method="post">
-                        <button type="submit" class="btn btn-danger w-100">Đăng xuất</button>
+                        <button type="submit" class="btn btn-light text-danger w-100 fw-bold" style="border-radius: 10px;">
+                            🚪 Đăng xuất
+                        </button>
                     </form>
                 </li>
+
             </ul>
         </nav>
 
         <!-- Main content -->
-        <div class="flex-grow-1 p-4">
-            <header class="mb-4">
-                <h2>@ViewData["Title"]</h2>
+        <div class="main-wrapper">
+            <header class="admin-header">
+                <h4 class="m-0 text-primary fw-bold">@ViewData["Title"]</h4>
             </header>
+
             <main>
                 @RenderBody()
             </main>

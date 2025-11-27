@@ -1,64 +1,91 @@
 ﻿@model QLBanSach.Models.NguoiDung
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa người dùng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-primary fw-bold">✏️ Chỉnh sửa người dùng</h2>
+    <a asp-action="Index" class="btn btn-outline-primary">← Quay lại</a>
+</div>
 
-<h4>NguoiDung</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="card shadow border-0">
+    <div class="card-body">
+
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="MaNguoiDung" />
-            <div class="form-group">
-                <label asp-for="TaiKhoan" class="control-label"></label>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <!-- Mã người dùng (readonly) -->
+            <div class="mb-3">
+                <label class="form-label">Mã người dùng</label>
+                <input class="form-control bg-light" value="@Model.MaNguoiDung" readonly />
+                <input type="hidden" asp-for="MaNguoiDung" />
+                <span asp-validation-for="MaNguoiDung" class="text-danger"></span>
+            </div>
+
+            <!-- Tài khoản -->
+            <div class="mb-3">
+                <label asp-for="TaiKhoan" class="form-label"></label>
                 <input asp-for="TaiKhoan" class="form-control" />
                 <span asp-validation-for="TaiKhoan" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MatKhau" class="control-label"></label>
-                <input asp-for="MatKhau" class="form-control" />
+
+            <!-- Mật khẩu -->
+            <div class="mb-3">
+                <label asp-for="MatKhau" class="form-label"></label>
+                <input asp-for="MatKhau" class="form-control" type="password" value="" placeholder="Nhập mật khẩu mới (nếu muốn)" />
                 <span asp-validation-for="MatKhau" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="HoTen" class="control-label"></label>
+
+
+            <!-- Họ tên -->
+            <div class="mb-3">
+                <label asp-for="HoTen" class="form-label"></label>
                 <input asp-for="HoTen" class="form-control" />
                 <span asp-validation-for="HoTen" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="SoDienThoai" class="control-label"></label>
+
+            <!-- Số điện thoại -->
+            <div class="mb-3">
+                <label asp-for="SoDienThoai" class="form-label"></label>
                 <input asp-for="SoDienThoai" class="form-control" />
                 <span asp-validation-for="SoDienThoai" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="DiaChi" class="control-label"></label>
+
+            <!-- Địa chỉ -->
+            <div class="mb-3">
+                <label asp-for="DiaChi" class="form-label"></label>
                 <input asp-for="DiaChi" class="form-control" />
                 <span asp-validation-for="DiaChi" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="VaiTro" /> @Html.DisplayNameFor(model => model.VaiTro)
-                </label>
+
+            <!-- Vai trò -->
+            <div class="mb-3">
+                <label class="form-label">Vai trò</label>
+                <select asp-for="VaiTro" class="form-select">
+                    <option value="false">Người dùng</option>
+                    <option value="true">Quản trị viên</option>
+                </select>
+                <span asp-validation-for="VaiTro" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+
+            <!-- Nút submit -->
+            <button type="submit" class="btn btn-primary px-4">
+                💾 Lưu thay đổi
+            </button>
         </form>
+
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }

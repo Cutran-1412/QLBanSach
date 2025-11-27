@@ -523,3 +523,7 @@ D:\Projeck\QLBanSach\QLBanSach\bin\Debug\net6.0\JetBrains.Annotations.dll
 D:\Projeck\QLBanSach\QLBanSach\bin\Debug\net6.0\X.PagedList.dll
 D:\Projeck\QLBanSach\QLBanSach\bin\Debug\net6.0\X.PagedList.Mvc.Core.dll
 D:\Projeck\QLBanSach\QLBanSach\obj\Debug\net6.0\QLBanSach.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Admin\source\repos\QLBanSach\QLBanSach\bin\Debug\net6.0\JetBrains.Annotations.dll
+C:\Users\Admin\source\repos\QLBanSach\QLBanSach\bin\Debug\net6.0\X.PagedList.dll
+C:\Users\Admin\source\repos\QLBanSach\QLBanSach\bin\Debug\net6.0\X.PagedList.Mvc.Core.dll
+C:\Users\Admin\source\repos\QLBanSach\QLBanSach\obj\Debug\net6.0\QLBanSach.MvcApplicationPartsAssemblyInfo.cs

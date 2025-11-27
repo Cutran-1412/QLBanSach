@@ -57,9 +57,11 @@ namespace QLBanSach.Controllers
             return "CTDH" + number.ToString("D6");
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
-            return View();
+
+            var DonHang = _donHangRepository.GetIDNguoiDung(id);
+            return View(DonHang);
         }
         public string GenerateMaCTDH()
         {
@@ -118,6 +120,11 @@ namespace QLBanSach.Controllers
                 TempData["Message"] = "Đã đặt hàng thành công";
                 TempData["MesseType"] = "success";
                 return RedirectToAction("Index", "Home");
+        }
+        public IActionResult Detail(string MaDonHang)
+        {
+            var Donhang = _donHangRepository.GetCTDH(MaDonHang);
+            return View(Donhang);
         }
     }
 }

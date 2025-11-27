@@ -1,7 +1,6 @@
 ﻿@model QLBanSach.Models.DonHang
 @{
     ViewData["Title"] = "Chi Tiết Đơn Hàng";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Chi Tiết Đơn Hàng: @Model?.MaDonHang</h2>
@@ -61,7 +60,12 @@
         </tfoot>
     </table>
     <div class="mt-3">
-        <a asp-action="Index">Back to List</a>
+        <a asp-controller="DonHang"
+           asp-action="Index"
+           asp-route-id="@Context.Session.GetString("UserId")"
+           class="btn btn-secondary">
+            ← Quay lại danh sách đơn hàng
+        </a>
     </div>
 
 }
