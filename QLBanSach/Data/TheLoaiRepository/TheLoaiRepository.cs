@@ -22,5 +22,6 @@ namespace QLBanSach.Data.TheLoaiRepository
         public void Save() => _context.SaveChanges();
 
         public void Update(TheLoai theloai) => _context.TheLoai.Update(theloai);
+        public bool IsUsedInSach(string maTheLoai)=> _context.Sach.Any(s => s.MaTheLoai == maTheLoai);
     }
 }

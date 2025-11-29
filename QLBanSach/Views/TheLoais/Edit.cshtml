@@ -1,34 +1,58 @@
 ﻿@model QLBanSach.Models.TheLoai
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Cập nhật thể loại";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="container mt-4" style="max-width:650px;">
 
-<h4>TheLoai</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="card shadow-sm rounded-4 p-4">
+
+        <div class="text-center mb-3">
+            <h3 class="fw-bold text-primary">
+                <i class="bi bi-pencil-square me-2"></i> Cập nhật thể loại
+            </h3>
+            <p class="text-muted mb-1">Chỉnh sửa thông tin thể loại trong hệ thống</p>
+            <hr />
+        </div>
+
+
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="MaTheLoai" />
-            <div class="form-group">
-                <label asp-for="TenTheLoai" class="control-label"></label>
-                <input asp-for="TenTheLoai" class="form-control" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <!-- Mã thể loại -->
+            <div class="mb-3">
+                <label asp-for="MaTheLoai" class="form-label fw-semibold"></label>
+                <input asp-for="MaTheLoai" class="form-control form-control-lg rounded-3 bg-light" readonly />
+            </div>
+
+            <!-- Tên thể loại -->
+            <div class="mb-3">
+                <label asp-for="TenTheLoai" class="form-label fw-semibold"></label>
+                <input asp-for="TenTheLoai" class="form-control form-control-lg rounded-3"
+                       placeholder="Nhập tên thể loại..." />
                 <span asp-validation-for="TenTheLoai" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a asp-action="Index" class="btn btn-secondary px-4 py-2 fw-semibold rounded-3">
+                    <i class="bi bi-arrow-left-circle me-1"></i> Quay lại
+                </a>
+
+                <button type="submit" class="btn btn-primary px-4 py-2 fw-semibold rounded-3">
+                    <i class="bi bi-save-fill me-1"></i> Lưu thể loại
+                </button>
+
             </div>
+
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }

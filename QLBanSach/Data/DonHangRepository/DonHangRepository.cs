@@ -29,5 +29,12 @@ namespace QLBanSach.Data.DonHangRepository
         public DonHang GetCTDH(string madonhang)=>_context.DonHang.Include(s=>s.ChiTietDonHangs).ThenInclude(ct => ct.Sach).FirstOrDefault(dh => dh.MaDonHang == madonhang);
 
         public DonHang GetById(string id) => _context.DonHang.Find(id);
+        public IEnumerable<DonHang> GetTop3DonMoiNhat()
+        {
+            return _context.DonHang
+                .OrderByDescending(d => d.NgayDat)
+                .Take(3)                             
+                .ToList();
+        }
     }
 }

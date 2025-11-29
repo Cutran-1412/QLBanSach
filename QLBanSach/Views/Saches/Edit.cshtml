@@ -1,74 +1,130 @@
 ﻿@model QLBanSach.Models.Sach
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa sách";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="container mt-4">
 
-<h4>Sach</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="MaSach" />
-            <div class="form-group">
-                <label asp-for="TenSach" class="control-label"></label>
-                <input asp-for="TenSach" class="form-control" />
-                <span asp-validation-for="TenSach" class="text-danger"></span>
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-primary">
+            <i class="bi bi-pencil-square me-2"></i> Chỉnh sửa sách
+        </h2>
+        <p class="text-muted">Cập nhật thông tin chi tiết của sách</p>
+        <hr />
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+
+            <div class="card shadow-sm p-4">
+                <form asp-action="Edit" enctype="multipart/form-data">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="MaSach" class="form-label fw-bold"></label>
+                        <input asp-for="MaSach" class="form-control" readonly />
+                    </div>
+
+                    <!-- Tên sách -->
+                    <div class="mb-3">
+                        <label asp-for="TenSach" class="form-label fw-semibold"></label>
+                        <input asp-for="TenSach" class="form-control" />
+                        <span asp-validation-for="TenSach" class="text-danger"></span>
+                    </div>
+
+                    <!-- Tác giả -->
+                    <div class="mb-3">
+                        <label asp-for="TacGia" class="form-label fw-semibold"></label>
+                        <input asp-for="TacGia" class="form-control" />
+                        <span asp-validation-for="TacGia" class="text-danger"></span>
+                    </div>
+
+                    <!-- Nhà xuất bản -->
+                    <div class="mb-3">
+                        <label asp-for="NhaXuatBan" class="form-label fw-semibold"></label>
+                        <input asp-for="NhaXuatBan" class="form-control" />
+                        <span asp-validation-for="NhaXuatBan" class="text-danger"></span>
+                    </div>
+
+                    <!-- Năm xuất bản -->
+                    <div class="mb-3">
+                        <label asp-for="NamXuatBan" class="form-label fw-semibold"></label>
+                        <input asp-for="NamXuatBan" class="form-control" />
+                        <span asp-validation-for="NamXuatBan" class="text-danger"></span>
+                    </div>
+
+                    <!-- Giá -->
+                    <div class="mb-3">
+                        <label asp-for="Gia" class="form-label fw-semibold"></label>
+                        <input asp-for="Gia" class="form-control" />
+                        <span asp-validation-for="Gia" class="text-danger"></span>
+                    </div>
+
+                    <!-- Số lượng -->
+                    <div class="mb-3">
+                        <label asp-for="SoLuong" class="form-label fw-semibold"></label>
+                        <input asp-for="SoLuong" class="form-control" />
+                        <span asp-validation-for="SoLuong" class="text-danger"></span>
+                    </div>
+
+                    <!-- Mô tả -->
+                    <div class="mb-3">
+                        <label asp-for="MoTa" class="form-label fw-semibold"></label>
+                        <textarea asp-for="MoTa" rows="3" class="form-control"></textarea>
+                        <span asp-validation-for="MoTa" class="text-danger"></span>
+                    </div>
+
+                    <!-- Ảnh hiện tại -->
+                    <div class="text-center mb-3">
+                        <label class="fw-semibold d-block mb-2">Ảnh hiện tại</label>
+                        <img id="previewImg"
+                             src="~/Images/@Model.Anh"
+                             class="shadow-sm"
+                             style="width:170px; height:230px; object-fit:cover; border-radius:6px;" />
+                    </div>
+
+                    <!-- Upload ảnh mới -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Chọn ảnh mới (tùy chọn)</label>
+                        <input type="file" name="AnhFile" accept="image/*" class="form-control"
+                               onchange="previewImage(event)" />
+                    </div>
+
+                    <!-- Thể loại -->
+                    <div class="mb-3">
+                        <label asp-for="MaTheLoai" class="form-label fw-semibold"></label>
+                        <select asp-for="MaTheLoai" class="form-select" asp-items="ViewBag.MaTheLoai"></select>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary fw-bold px-4">
+                            <i class="bi bi-save2-fill me-2"></i> Lưu thay đổi
+                        </button>
+
+                        <a asp-action="Index" class="btn btn-secondary ms-2">
+                            <i class="bi bi-arrow-left-circle me-1"></i> Quay lại
+                        </a>
+                    </div>
+
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="TacGia" class="control-label"></label>
-                <input asp-for="TacGia" class="form-control" />
-                <span asp-validation-for="TacGia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NhaXuatBan" class="control-label"></label>
-                <input asp-for="NhaXuatBan" class="form-control" />
-                <span asp-validation-for="NhaXuatBan" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NamXuatBan" class="control-label"></label>
-                <input asp-for="NamXuatBan" class="form-control" />
-                <span asp-validation-for="NamXuatBan" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Gia" class="control-label"></label>
-                <input asp-for="Gia" class="form-control" />
-                <span asp-validation-for="Gia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SoLuong" class="control-label"></label>
-                <input asp-for="SoLuong" class="form-control" />
-                <span asp-validation-for="SoLuong" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MoTa" class="control-label"></label>
-                <input asp-for="MoTa" class="form-control" />
-                <span asp-validation-for="MoTa" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Anh" class="control-label"></label>
-                <input asp-for="Anh" class="form-control" />
-                <span asp-validation-for="Anh" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaTheLoai" class="control-label"></label>
-                <select asp-for="MaTheLoai" class="form-control" asp-items="ViewBag.MaTheLoai"></select>
-                <span asp-validation-for="MaTheLoai" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function previewImage(event) {
+            document.getElementById('previewImg').src =
+                URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+

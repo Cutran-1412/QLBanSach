@@ -1,17 +1,41 @@
-﻿@model IEnumerable<QLBanSach.Models.DonHang>
+﻿@model X.PagedList.IPagedList<QLBanSach.Models.DonHang>
 
-@{
-    ViewData["Title"] = "Danh sách đơn hàng";
-}
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+<style>
+    th {
+        background-color: #007bff !important;
+        color: white !important;
+    }
 
-<h2 class="mb-4">Danh sách đơn hàng</h2>
+</style>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="text-primary">Danh sách đơn hàng</h2>
 
-<table class="table table-bordered text-center align-middle table-hover custom-table-blue">
-    <thead class="custom-header-blue">
+    <form method="get" class="d-flex align-items-center gap-2">
+        <input type="hidden" name="id" value="@ViewBag.IdNguoiDung" />
+
+        @{
+            string tt = ViewBag.TrangThai as string;
+        }
+
+        <select name="trangThai" class="form-select" style="width: 180px;">
+            <option value="" selected="@(string.IsNullOrEmpty(tt) ? "selected" : null)">-- Tất cả --</option>
+            <option value="Đã đặt hàng" selected="@(tt == "Đã đặt hàng" ? "selected" : null)">Đã đặt hàng</option>
+            <option value="Đang giao hàng" selected="@(tt == "Đang giao hàng" ? "selected" : null)">Đang giao hàng</option>
+            <option value="Đã nhận hàng" selected="@(tt == "Đã nhận hàng" ? "selected" : null)">Đã nhận hàng</option>
+            <option value="Đã hủy" selected="@(tt == "Đã hủy" ? "selected" : null)">Đã hủy</option>
+        </select>
+
+        <button class="btn btn-primary">Lọc</button>
+    </form>
+</div>
+
+<table class="table table-bordered table-hover text-center align-middle">
+    <thead class="bg-primary text-white">
         <tr>
-            <th>Mã đơn hàng</th>
-            <th>Mã người dùng</th>
-            <th>Địa chỉ</th>
+            <th>Mã đơn</th>
             <th>Ngày đặt</th>
             <th>Trạng thái</th>
             <th>Tổng tiền</th>
@@ -20,81 +44,40 @@
     </thead>
 
     <tbody>
-        @if (Model != null && Model.Any())
-        {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.MaDonHang</td>
-                    <td>@item.MaNguoiDung</td>
-                    <td>@item.DiaChiNhanHang</td>
-                    <td>@item.NgayDat.ToString("dd/MM/yyyy HH:mm")</td>
-
-                    <td>
-                        <span class="badge bg-primary text-light px-3 py-2">@item.TrangThai</span>
-                    </td>
-
-                    <td>@item.TongTien.ToString("N0") đ</td>
-                    <td>
-                        <a href="@Url.Action("Detail", "DonHang", new { MaDonHang = item.MaDonHang })"
-                           class="btn btn-sm btn-primary btn-view">
-                            Xem
-                        </a>
-                    </td>
-                </tr>
-            }
-        }
-        else
+        @foreach (var item in Model)
         {
             <tr>
-                <td colspan="7" class="text-danger fw-bold">Không có đơn hàng nào.</td>
+                <td>@item.MaDonHang</td>
+                <td>@item.NgayDat.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <span class="badge bg-info text-dark px-3 py-2">
+                        @item.TrangThai
+                    </span>
+                </td>
+                <td>@item.TongTien.ToString("N0") đ</td>
+
+                <td>
+                    <a class="btn btn-sm btn-primary"
+                       href="@Url.Action("Detail", "DonHang", new { MaDonHang = item.MaDonHang })">
+                        Xem
+                    </a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
 
-
-<style>
-    /* Màu xanh chủ đạo của website */
-    :root {
-        --primary-blue: #0d6efd;
-        --primary-blue-light: #bcd8ff;
-        --primary-blue-hover: #eaf3ff;
-    }
-
-    /* Viền bảng xanh */
-    .custom-table-blue {
-        border: 2px solid var(--primary-blue);
-    }
-
-        .custom-table-blue td,
-        .custom-table-blue th {
-            border: 1px solid var(--primary-blue);
+<div class="d-flex justify-content-center mt-3">
+    @Html.PagedListPager(
+        Model,
+        page => Url.Action("Index", new {
+            page,
+            id = ViewBag.IdNguoiDung,
+            trangThai = ViewBag.TrangThai
+        }),
+        new PagedListRenderOptions(){
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" }
         }
-
-    /* Header xanh đậm đồng bộ navbar/nút */
-    .custom-header-blue {
-        background-color: var(--primary-blue);
-        color: white;
-        font-weight: 600;
-    }
-
-    /* Hover mềm nhẹ */
-    .custom-table-blue tbody tr:hover {
-        background-color: var(--primary-blue-hover);
-    }
-
-    /* Nút xem thống nhất màu */
-    .btn-view {
-        background-color: var(--primary-blue) !important;
-        border-color: var(--primary-blue) !important;
-        color: white !important;
-        font-weight: 500;
-        padding: 6px 15px;
-        border-radius: 6px;
-    }
-
-        .btn-view:hover {
-            background-color: #0953c6 !important;
-        }
-</style>
+    )
+</div>

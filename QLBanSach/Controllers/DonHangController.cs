@@ -8,6 +8,7 @@ using QLBanSach.Data.GioHangRepository;
 using QLBanSach.Data.NguoiDungRepository;
 using QLBanSach.Data.SachRepository;
 using QLBanSach.Models;
+using X.PagedList;
 
 namespace QLBanSach.Controllers
 {
@@ -17,10 +18,10 @@ namespace QLBanSach.Controllers
         private readonly IChiTietGioHangRepository _chiTietGioHangRepository;
         private readonly IDonHangRepository _donHangRepository;
         private readonly IChiTietDonHangRepository _chiTietDonHangRepository;
-        private readonly ISacRepository _sacRepository;
+        private readonly ISachRepository _sacRepository;
         private readonly INguoiDungRepository _nguoiDungRepository;
 
-        public DonHangController(IGioHangRepository gioHangRepository, IChiTietGioHangRepository chiTietGioHangRepository, IDonHangRepository donHangRepository, IChiTietDonHangRepository chiTietDonHangRepository, ISacRepository sacRepository, INguoiDungRepository guoiDungRepository)
+        public DonHangController(IGioHangRepository gioHangRepository, IChiTietGioHangRepository chiTietGioHangRepository, IDonHangRepository donHangRepository, IChiTietDonHangRepository chiTietDonHangRepository, ISachRepository sacRepository, INguoiDungRepository guoiDungRepository)
         {
             _gioHangRepository = gioHangRepository;
             _chiTietGioHangRepository = chiTietGioHangRepository;
@@ -56,13 +57,34 @@ namespace QLBanSach.Controllers
 
             return "CTDH" + number.ToString("D6");
         }
-
-        public IActionResult Index(string id)
+        public IActionResult Index(string id, string trangThai, int page = 1, int pageSize = 10)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                id = HttpContext.Session.GetString("UserId");
+            }
 
-            var DonHang = _donHangRepository.GetIDNguoiDung(id);
-            return View(DonHang);
+            var query = _donHangRepository.GetIDNguoiDung(id).AsQueryable();
+
+            // Lọc theo trạng thái
+            if (!string.IsNullOrEmpty(trangThai))
+            {
+                query = query.Where(x => x.TrangThai == trangThai);
+            }
+
+            // Sắp xếp
+            query = query.OrderByDescending(x => x.NgayDat);
+
+            // Phân trang
+            var pagedList = query.ToPagedList(page, pageSize);
+
+            // Giữ giá trị lọc để truyền lại vào View
+            ViewBag.TrangThai = trangThai;
+            ViewBag.IdNguoiDung = id;
+
+            return View(pagedList);
         }
+
         public string GenerateMaCTDH()
         {
             string? lastCode = _chiTietDonHangRepository.GetAll().OrderByDescending(x => x.MaChiTiet)
@@ -126,5 +148,37 @@ namespace QLBanSach.Controllers
             var Donhang = _donHangRepository.GetCTDH(MaDonHang);
             return View(Donhang);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult HuyHang(string MaDonHang)
+        {
+            var donhang = _donHangRepository.GetById(MaDonHang);
+            donhang.TrangThai = "Đã hủy";
+            _donHangRepository.Update(donhang);
+            _donHangRepository.Save();
+
+
+            TempData["Message"] = $"Đơn hàng {donhang.MaDonHang} đã được hủy!";
+            TempData["MessageType"] = "success";
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult NhanHang(string MaDonHang)
+        {
+            var donhang = _donHangRepository.GetById(MaDonHang);
+
+            donhang.TrangThai = "Đã nhận hàng";
+            _donHangRepository.Update(donhang);
+            _donHangRepository.Save();
+
+            TempData["Message"] = $"Bạn đã nhận đơn hàng {donhang.MaDonHang}!";
+            TempData["MessageType"] = "success";
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

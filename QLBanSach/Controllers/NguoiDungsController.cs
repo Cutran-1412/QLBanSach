@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QLBanSach.Data;
+using QLBanSach.Data.DonHangRepository;
 using QLBanSach.Data.NguoiDungRepository;
 using QLBanSach.Models;
 
@@ -14,36 +15,53 @@ namespace QLBanSach.Controllers
     public class NguoiDungsController : Controller
     {
         private readonly INguoiDungRepository _nguoiDungRepository;
+        private readonly IDonHangRepository _donHangRepository;
 
-        public NguoiDungsController(INguoiDungRepository nguoiDungRepository)
+        public NguoiDungsController(INguoiDungRepository nguoiDungRepository, IDonHangRepository donHangRepository)
         {
             _nguoiDungRepository = nguoiDungRepository;
+            _donHangRepository = donHangRepository;
         }
 
-
-
         // GET: NguoiDungs
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(string keyword = "",string email = "", string sdt = "",string diachi = "", string vaitro = "",int page = 1)
         {
             int pageSize = 10;
-            int totalItems = _nguoiDungRepository.GetTotalCount();
-
-            var items = _nguoiDungRepository.GetPaged(page, pageSize);
-
+            int totalItems = _nguoiDungRepository.GetTotalCountFiltered(keyword, email, sdt, diachi, vaitro);
+            var items = _nguoiDungRepository.GetPagedFiltered(keyword, email, sdt, diachi, vaitro, page, pageSize);
+            ViewBag.Keyword = keyword;
+            ViewBag.Email = email;
+            ViewBag.SDT = sdt;
+            ViewBag.DiaChi = diachi;
+            ViewBag.VaiTro = vaitro;
             ViewBag.Page = page;
             ViewBag.TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
-
             return View(items);
         }
 
         // GET: NguoiDungs/Details/5
-        public IActionResult Details(string id)
+        public IActionResult Details(string id, int page = 1)
         {
+            int pageSize = 5;
+
             var nguoiDung = _nguoiDungRepository.GetById(id);
             if (nguoiDung == null)
-            {
                 return NotFound();
-            }
+
+            var donhang = _donHangRepository.GetIDNguoiDung(id);
+
+            // Phân trang đơn hàng
+            int totalItems = donhang.Count();
+            var pagedDonHang = donhang
+                                .OrderByDescending(x => x.NgayDat)
+                                .Skip((page - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
+
+            ViewBag.DonHang = pagedDonHang;
+            ViewBag.Page = page;
+            ViewBag.TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+            ViewBag.IsAdmin = nguoiDung.VaiTro; 
 
             return View(nguoiDung);
         }
@@ -75,8 +93,23 @@ namespace QLBanSach.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(NguoiDung nguoiDung)
         {
+            ViewBag.MaNguoiDung = GenerateMaNguoiDung();
             if (ModelState.IsValid)
             {
+                if (_nguoiDungRepository.EmailExists(nguoiDung.Email))
+                {
+                    TempData["Message"] = "Bị trùng mã Email!";
+                    TempData["MessageType"] = "warning";
+                    return View(nguoiDung);
+                }
+                if (_nguoiDungRepository.TaiKhoanExists(nguoiDung.TaiKhoan))
+                {
+                    TempData["Message"] = "Bị trùng mã tài khoản!";
+                    TempData["MessageType"] = "warning";
+                    return View(nguoiDung);
+                }
+                TempData["Message"] = "Thêm thành công người dùng  " + nguoiDung.HoTen + " !";
+                TempData["MessageType"] = "success";
                 _nguoiDungRepository.Add(nguoiDung);
                 _nguoiDungRepository.Save();
                 return RedirectToAction(nameof(Index));
@@ -106,6 +139,8 @@ namespace QLBanSach.Controllers
             {
                 try
                 {
+                    TempData["Message"] = "Sửa thành công người dùng  " + nguoiDung.MaNguoiDung + " !";
+                    TempData["MessageType"] = "success";
                     _nguoiDungRepository.Update(nguoiDung);
                     _nguoiDungRepository.Save();
                 }
@@ -137,6 +172,8 @@ namespace QLBanSach.Controllers
             var nguoiDung = _nguoiDungRepository.GetById(id);
             if (nguoiDung != null)
             {
+                TempData["Message"] = "Xoá thành công mã " + id + " !";
+                TempData["MessageType"] = "error";
                 _nguoiDungRepository.Delete(nguoiDung);
                 _nguoiDungRepository.Save();
             }

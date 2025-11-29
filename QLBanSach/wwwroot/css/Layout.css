@@ -143,39 +143,42 @@
     padding: 0 4px;
     color: #1a73e8;
 }
+.nav-btn {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* icon cách chữ */
 
-
-.toast-messe {
-    position: fixed;
-    top: 20px; /* cách mép trên */
-    left: 50%; /* căn giữa ngang */
-    transform: translateX(-50%) translateY(-20px); /* animation trượt từ trên xuống */
-    color: #fff;
-    padding: 20px 40px; /* padding lớn hơn */
-    border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    z-index: 1050;
-    opacity: 0;
-    transition: all 0.4s ease;
-    font-size: 18px; /* chữ to hơn */
-    min-width: 300px; /* rộng hơn */
-    max-width: 600px; /* tránh quá to trên màn hình nhỏ */
-    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.25s ease;
 }
 
-.toast-messe.success {
-    background-color: #007bff;
-}
-    .toast-messe.error {
-        background-color: #dc3545;
+    /* Không cho Bootstrap thêm border hoặc outline khi focus */
+    .nav-btn:focus,
+    .nav-btn:active,
+    .nav-btn:focus-visible {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
     }
-    /* đỏ */
-    .toast-messe.info {
-        background-color: #28a745;
-    }
-    /* xanh lá */
 
-    .toast-messe.show {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
+    /* Hover nhẹ */
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.18) !important;
+        color: #fff !important;
     }
+.cart-badge {
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    margin-left: 6px;
+}

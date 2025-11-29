@@ -4,47 +4,95 @@
     ViewData["Title"] = "Xác nhận đơn hàng";
 }
 
-<h2>Xác nhận đơn hàng</h2>
+<h2 class="text-center mb-4 fw-bold text-primary">Xác nhận đơn hàng</h2>
 
-<div class="card p-4" style="max-width:600px; margin:auto;">
-
-    <form asp-action="DatHang" method="post" class="m-0 p-0">
+<div class="card shadow-lg border-0 p-4" style="max-width:700px; margin:auto; border-radius:16px;">
+    <form asp-action="DatHang" method="post">
         @Html.AntiForgeryToken()
+
+        <!-- Hidden fields -->
         <input asp-for="MaDonHang" type="hidden" />
         <input asp-for="MaNguoiDung" type="hidden" />
         <input asp-for="TrangThai" type="hidden" />
-        <input name="maGioHang" type="hidden" value="@ViewBag.MaGioHang" />
         <input asp-for="NgayDat" type="hidden" value="@Model.NgayDat" />
         <input asp-for="TongTien" type="hidden" value="@Model.TongTien" />
-        <div class="mb-3">
-            <label asp-for="DiaChiNhanHang" class="form-label"><strong>Địa chỉ nhận hàng:</strong></label>
-            <input asp-for="DiaChiNhanHang" class="form-control" />
+        <input name="maGioHang" type="hidden" value="@ViewBag.MaGioHang" />
+
+        <!-- Địa chỉ -->
+        <div class="mb-4">
+            <label asp-for="DiaChiNhanHang" class="form-label fw-semibold text-primary">
+                Địa chỉ nhận hàng
+            </label>
+            <input asp-for="DiaChiNhanHang" class="form-control custom-input" placeholder="Nhập địa chỉ nhận hàng..." />
         </div>
 
-        <h4>Thông tin đơn hàng</h4>
-        <p><strong>Mã đơn hàng:</strong> @Model.MaDonHang</p>
-        <p><strong>Ngày đặt:</strong> @Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</p>
-        <p><strong>Trạng thái:</strong> @Model.TrangThai</p>
-        <p><strong>Tổng tiền:</strong> @Model.TongTien.ToString("N0") VNĐ</p>
+        <!-- Thông tin đơn -->
+        <div class="order-box p-3 mb-3 rounded">
+            <h5 class="fw-bold text-primary mb-3">Thông tin đơn hàng</h5>
 
-        <div class="d-flex align-items-center justify-content-center gap-2 mt-3">
-            <button type="submit" class="btn btn-success btn-lg w-100 btn-same-height">
+            <div class="row mb-2">
+                <div class="col-5 fw-semibold">Mã đơn hàng:</div>
+                <div class="col-7">@Model.MaDonHang</div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-5 fw-semibold">Ngày đặt:</div>
+                <div class="col-7">@Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-5 fw-semibold">Trạng thái:</div>
+                <div class="col-7">@Model.TrangThai</div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-5 fw-semibold">Tổng tiền:</div>
+                <div class="col-7 text-danger fw-bold">
+                    @Model.TongTien.ToString("N0") VNĐ
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex gap-3 mt-4">
+            <button type="submit" class="btn btn-primary btn-lg flex-fill py-3 fw-bold shadow-sm custom-btn">
                 Xác nhận đặt hàng
             </button>
 
             <a asp-controller="GioHang" asp-action="Index"
                asp-route-id="@Context.Session.GetString("UserId")"
-               class="btn btn-danger btn-lg w-100 btn-same-height">
+               class="btn btn-outline-danger btn-lg flex-fill py-3 fw-bold shadow-sm custom-btn">
                 Hủy
             </a>
         </div>
     </form>
-
-
 </div>
 
 <style>
-    .btn-same-height {
-        height: 52px !important;
+    .custom-input {
+        border-radius: 10px;
+        height: 48px;
+        border: 1.5px solid #0d6efd;
     }
+
+        .custom-input:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 6px rgba(13, 110, 253, 0.4);
+        }
+
+    .order-box {
+        background: #f8fbff;
+        border-left: 4px solid #0d6efd;
+        border-radius: 12px;
+    }
+
+    .custom-btn {
+        border-radius: 12px;
+        transition: 0.2s;
+    }
+
+        .custom-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        }
 </style>

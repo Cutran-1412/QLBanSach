@@ -1,112 +1,333 @@
 ﻿@{
+    ViewData["Title"] = "Bảng tổng hợp";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var top3 = ViewBag.Top3Don as List<QLBanSach.Models.DonHang>;
 }
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+    .stat-card {
+        border: 0;
+        border-radius: 16px;
+        padding: 22px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .stat-card i.bg-icon {
+            font-size: 80px;
+            position: absolute;
+            right: -10px;
+            bottom: -10px;
+            opacity: 0.15;
+        }
+
+    .section-title {
+        font-weight: 700;
+        font-size: 22px;
+        margin-bottom: 18px;
+        color: #0d6efd;
+    }
+</style>
+
 <div class="container-fluid">
 
-    <!-- Hàng 1: Các ô thống kê -->
+    <!-- HÀNG 1 -->
     <div class="row g-4">
 
         <!-- Tổng người dùng -->
         <div class="col-md-3">
-            <div class="card shadow-sm border-0 rounded-4 p-3" style="background: #e7f1ff;">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-primary">Tổng người dùng</h6>
-                        <h3 class="fw-bold">1,245</h3>
-                    </div>
-                    <div class="fs-2 text-primary">👤</div>
-                </div>
+            <div class="stat-card shadow-sm" style="background:#e8f1ff;">
+                <h6 class="text-primary mb-1">Tổng người dùng</h6>
+                <h3 class="fw-bold">@ViewBag.TongNguoi</h3>
+
+                <p class="text-muted small mt-2 mb-0">
+                    <i class="bi bi-shield-lock-fill me-1 text-primary"></i> Admin: @ViewBag.Admin <br />
+                    <i class="bi bi-person-fill me-1 text-secondary"></i> Người dùng: @ViewBag.Nguoi
+                </p>
+
+                <i class="bi bi-people-fill bg-icon text-primary"></i>
             </div>
         </div>
 
-        <!-- Tổng đơn hàng -->
+        <!-- Sách trong kho -->
         <div class="col-md-3">
-            <div class="card shadow-sm border-0 rounded-4 p-3" style="background: #fff4e5;">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-warning">Tổng đơn hàng</h6>
-                        <h3 class="fw-bold">856</h3>
-                    </div>
-                    <div class="fs-2 text-warning">🧾</div>
+            <div class="stat-card shadow-sm" style="background:#fff4e5;">
+                <h6 class="text-warning mb-1">Sách trong kho</h6>
+                <h3 class="fw-bold">@ViewBag.SLDauSach đầu sách</h3>
+
+                <p class="text-muted small mt-2 mb-0">
+                    <i class="bi bi-journal-text me-1 text-warning"></i>
+                    Tổng số sách: @ViewBag.SLSach
+                </p>
+
+                <i class="bi bi-book-half bg-icon text-warning"></i>
+            </div>
+        </div>
+
+        <!-- Thống kê đơn hàng -->
+        <div class="col-md-3">
+            <div class="stat-card shadow-sm p-4 bg-white">
+
+                <h6 class="fw-bold text-primary mb-3">
+                    <i class="bi bi-receipt-cutoff me-2"></i> Thống kê đơn hàng
+                </h6>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <span><i class="bi bi-list-ul text-secondary me-2"></i> Tổng đơn:</span>
+                    <span class="fw-bold">@ViewBag.TongDon</span>
                 </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <span><i class="bi bi-box text-info me-2"></i> Đã đặt hàng:</span>
+                    <span class="fw-bold text-info">@ViewBag.DaDat</span>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <span><i class="bi bi-truck text-warning me-2"></i> Đang giao:</span>
+                    <span class="fw-bold text-warning">@ViewBag.DangGiao</span>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <span><i class="bi bi-check2-circle text-success me-2"></i> Đã nhận:</span>
+                    <span class="fw-bold text-success">@ViewBag.DaNhan</span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <span><i class="bi bi-x-circle text-danger me-2"></i> Đã huỷ:</span>
+                    <span class="fw-bold text-danger">@ViewBag.Huy</span>
+                </div>
+
+                <i class="bi bi-clipboard-data bg-icon text-primary"></i>
             </div>
         </div>
 
         <!-- Doanh thu -->
         <div class="col-md-3">
-            <div class="card shadow-sm border-0 rounded-4 p-3" style="background: #f3e8ff;">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-purple" style="color:#7a3ff6">Doanh thu</h6>
-                        <h3 class="fw-bold">320,500,000 ₫</h3>
-                    </div>
-                    <div class="fs-2" style="color:#7a3ff6;">💰</div>
-                </div>
+            <div class="stat-card shadow-sm" style="background:#f3e8ff;">
+                <h6 class="fw-bold mb-2" style="color:#7a3ff6;">Doanh thu</h6>
+
+                <h3 class="fw-bold">
+                    @String.Format("{0:N0} ₫", ViewBag.TongDoanhThu ?? 0)
+                </h3>
+
+                <i class="bi bi-cash-coin bg-icon" style="color:#7a3ff6;"></i>
             </div>
         </div>
 
-        <!-- Đang chờ xử lý -->
+        <!-- Đơn đặt hôm nay -->
         <div class="col-md-3">
-            <div class="card shadow-sm border-0 rounded-4 p-3" style="background: #e6ffee;">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <h6 class="text-success">Đơn hàng chờ xử lý</h6>
-                        <h3 class="fw-bold">12</h3>
-                    </div>
-                    <div class="fs-2 text-success">⏳</div>
-                </div>
+            <div class="stat-card shadow-sm" style="background:#fff4e5;">
+                <h6 class="fw-bold text-warning mb-1">Đơn đặt hôm nay</h6>
+                <h3 class="fw-bold text-warning">@ViewBag.DaDatHomNay</h3>
+                <p class="text-muted small">Số đơn được đặt trong hôm nay</p>
+
+                <i class="bi bi-calendar-check bg-icon text-warning"></i>
+            </div>
+        </div>
+        <!-- Lượt xem hôm nay -->
+        <div class="col-md-3">
+            <div class="stat-card shadow-sm" style="background:#e8f7ff;">
+                <h6 class="fw-bold text-info mb-1">Lượt xem hôm nay</h6>
+
+                <!-- SỐ MẪU -->
+                <h3 class="fw-bold text-info">36</h3>
+
+                <p class="text-muted small">Tổng lượt truy cập hôm nay</p>
+                <i class="bi bi-eye-fill bg-icon text-info"></i>
             </div>
         </div>
 
-    </div>
+        <!-- Sản phẩm bán được hôm nay -->
+        <div class="col-md-3">
+            <div class="stat-card shadow-sm" style="background:#eafbea;">
+                <h6 class="fw-bold text-success mb-1">Sản phẩm bán hôm nay</h6>
 
-    <!-- Hàng 2: Biểu đồ hoặc bảng gần đây -->
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <div class="card shadow-sm border-0 p-4 rounded-4">
-                <h5 class="mb-3">📈 Doanh thu gần đây</h5>
-                <p class="text-muted">(Bạn có thể thêm biểu đồ tại đây)</p>
-                <div class="text-center text-secondary">[Biểu đồ doanh thu]</div>
+                <!-- SỐ MẪU -->
+                <h3 class="fw-bold text-success">5</h3>
+
+                <p class="text-muted small">Tổng số sản phẩm đã bán</p>
+                <i class="bi bi-cart-check bg-icon text-success"></i>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="stat-card shadow-sm" style="background:#e5f4ff;">
+                <h6 class="fw-bold text-primary mb-1">Sản phẩm tồn kho</h6>
+                <h3 class="fw-bold text-primary">7</h3>
+                <p class="text-muted small">Tổng số lượng sản phẩm còn trong kho</p>
 
-        <div class="col-md-6">
-            <div class="card shadow-sm border-0 p-4 rounded-4">
-                <h5 class="mb-3">🧾 Đơn hàng mới nhất</h5>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Mã đơn</th>
-                            <th>Khách hàng</th>
-                            <th>Ngày</th>
-                            <th>Tổng</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#DH1023</td>
-                            <td>Nguyễn Văn A</td>
-                            <td>25/11/2025</td>
-                            <td>350,000 ₫</td>
-                        </tr>
-                        <tr>
-                            <td>#DH1022</td>
-                            <td>Trần Minh B</td>
-                            <td>25/11/2025</td>
-                            <td>190,000 ₫</td>
-                        </tr>
-                        <tr>
-                            <td>#DH1021</td>
-                            <td>Hoàng C</td>
-                            <td>24/11/2025</td>
-                            <td>420,000 ₫</td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                <i class="bi bi-box-seam bg-icon text-primary">3</i>
             </div>
         </div>
     </div>
 
+
+    <!-- HÀNG 2 -->
+    <div class="row mt-5 g-4">
+
+        <!-- Doanh thu gần đây -->
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4 border-0 rounded-4">
+                <h5 class="section-title"><i class="bi bi-graph-up me-2"></i>Doanh thu gần đây</h5>
+                <canvas id="doanhThuChart" height="160"></canvas>
+            </div>
+        </div>
+
+        <!-- TOP 3 ĐƠN HÀNG MỚI -->
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4 border-0 rounded-4">
+                <h5 class="section-title"><i class="bi bi-bag-check me-2"></i>3 đơn hàng mới nhất</h5>
+
+                @if (top3 != null && top3.Any())
+                {
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Mã đơn</th>
+                                <th>Người đặt</th>
+                                <th>Ngày đặt</th>
+                                <th>Trạng thái</th>
+                                <th class="text-end">Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in top3)
+                            {
+                                <tr>
+                                    <td>@item.MaDonHang</td>
+                                    <td>@item.NguoiDung?.HoTen</td>
+                                    <td>@item.NgayDat.ToString("dd/MM/yyyy")</td>
+                                    <td><span class="badge bg-primary">@item.TrangThai</span></td>
+                                    <td class="text-end fw-bold">@String.Format("{0:N0} đ", item.TongTien)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p class="text-muted fst-italic">Không có đơn hàng nào.</p>
+                }
+            </div>
+        </div>
+
+        <!-- Lượt xem -->
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4 border-0 rounded-4">
+                <h5 class="section-title">
+                    <i class="bi bi-bar-chart me-2 text-info"></i>Lượt xem trên shop
+                </h5>
+                <canvas id="viewChart" height="160"></canvas>
+            </div>
+        </div>
+
+        <!-- Pie chart -->
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4 border-0 rounded-4">
+                <h5 class="section-title"><i class="bi bi-pie-chart me-2"></i>Tỷ lệ thành công / huỷ</h5>
+                <canvas id="pieCancelSuccess" height="200"></canvas>
+            </div>
+        </div>
+
+    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const doanhThuLabels = ["T1", "T2", "T3", "T4", "T5", "T6"];
+    const doanhThuData = [120, 150, 180, 90, 200, 250];
+
+    const doanhThuCtx = document.getElementById("doanhThuChart").getContext("2d");
+
+    new Chart(doanhThuCtx, {
+        type: "line",
+        data: {
+            labels: doanhThuLabels,
+            datasets: [{
+                label: "Doanh thu (triệu đồng)",
+                data: doanhThuData,
+                borderWidth: 3,
+                borderColor: "#0d6efd",
+                backgroundColor: "rgba(13,110,253,0.3)",
+                tension: 0.3,
+                fill: true,
+                pointBackgroundColor: "#0d6efd",
+                pointRadius: 5
+            }]
+        },
+        options: {
+            plugins: {
+                legend: { display: true }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: value => value + "tr"
+                    }
+                }
+            }
+        }
+    });
+
+    const viewLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+    const viewData = [1200, 1800, 1500, 2200, 2600, 3100];
+
+    const viewCtx = document.getElementById("viewChart").getContext("2d");
+
+    new Chart(viewCtx, {
+        type: "line",
+        data: {
+            labels: viewLabels,
+            datasets: [{
+                label: "Lượt xem",
+                data: viewData,
+                fill: true,
+                tension: 0.3,
+                backgroundColor: "rgba(13, 202, 240, 0.25)",
+                borderColor: "#0dcaf0",
+                borderWidth: 2,
+                pointBackgroundColor: "#0dcaf0",
+                pointRadius: 4
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false } },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: value => value + " lượt"
+                    }
+                }
+            }
+        }
+    });
+
+    const soDonHuy = 25;
+    const soDonThanhCong = 75;
+
+    const pieCtx = document.getElementById('pieCancelSuccess').getContext('2d');
+
+    new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Hủy đơn', 'Nhận thành công'],
+            datasets: [{
+                data: [soDonHuy, soDonThanhCong],
+                backgroundColor: ['#dc3545', '#198754'],
+                hoverOffset: 8
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { font: { size: 14 } }
+                }
+            }
+        }
+    });
+</script>

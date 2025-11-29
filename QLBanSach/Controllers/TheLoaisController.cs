@@ -21,10 +21,22 @@ namespace QLBanSach.Controllers
         }
 
         // GET: TheLoais
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize =10)
         {
-            var theloai = _theLoaiRepository.GetAll();
-            return View(theloai);
+            var theloai = _theLoaiRepository.GetAll().ToList();
+
+            int totalItems = theloai.Count;
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            var items = theloai
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            ViewBag.Page = page;
+            ViewBag.TotalPages = totalPages;
+
+            return View(items);
         }
 
         // GET: TheLoais/Details/5
@@ -54,8 +66,16 @@ namespace QLBanSach.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (_theLoaiRepository.GetById(theLoai.MaTheLoai)!=null)
+                {
+                    TempData["Message"] = "Bị trùng mã thể loại!";
+                    TempData["MessageType"] = "warning";
+                    return View(theLoai);
+                }
                 _theLoaiRepository.Add(theLoai);
                 _theLoaiRepository.Save();
+                TempData["Message"] = "Thêm thành công thể loại "+theLoai.TenTheLoai+" !" ;
+                TempData["MessageType"] = "success";
                 return RedirectToAction(nameof(Index));
             }
             return View(theLoai);
@@ -83,8 +103,10 @@ namespace QLBanSach.Controllers
             {
                 try
                 {
+                    TempData["Message"] = "Sửa thành công mã thể loại " + theLoai.MaTheLoai + " !";
+                    TempData["MessageType"] = "success";
                     _theLoaiRepository.Update(theLoai);
-                    _theLoaiRepository.Delete(theLoai);
+                    _theLoaiRepository.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -113,8 +135,16 @@ namespace QLBanSach.Controllers
         public IActionResult DeleteConfirmed(string id)
         {
             var theLoai = _theLoaiRepository.GetById(id);
+            if (_theLoaiRepository.IsUsedInSach(id))
+            {
+                TempData["Message"] = "Thể loại đang có ở sách vui lòng không xoá!";
+                TempData["MessageType"] = "warning";
+                return RedirectToAction(nameof(Index));
+            }
             if (theLoai != null)
             {
+                TempData["Message"] = "Xoá thành công mã "+theLoai.MaTheLoai+" !";
+                TempData["MessageType"] = "error";
                 _theLoaiRepository.Delete(theLoai);
                 _theLoaiRepository.Save();
             }

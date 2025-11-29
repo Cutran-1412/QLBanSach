@@ -14,7 +14,7 @@ namespace QLBanSach.Data.ChiTietGioHangRepository
 
         public void Add(ChiTietGioHang chitietgiohang) => _context.ChiTietGioHang.Add(chitietgiohang);
 
-        public ChiTietGioHang CheckSach(string name) => _context.ChiTietGioHang.FirstOrDefault(x=>x.MaSach==name);
+        public ChiTietGioHang CheckSach(string ma, string name) => _context.ChiTietGioHang.FirstOrDefault(x=>x.MaGioHang==ma&&x.MaSach==name);
 
         public IEnumerable<ChiTietGioHang> GetAll() => _context.ChiTietGioHang.ToList();
 
@@ -45,5 +45,7 @@ namespace QLBanSach.Data.ChiTietGioHangRepository
             .ToList();
             return chiTietGioHang.Sum(c => c.Sach.Gia * c.SoLuong);
         }
+
+        public int soluong(string magiohang) => _context.ChiTietGioHang.Count(s => s.MaGioHang== magiohang);
     }
 }

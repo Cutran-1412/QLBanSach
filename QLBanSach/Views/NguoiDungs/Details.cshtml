@@ -2,58 +2,128 @@
 @{
     ViewData["Title"] = "Chi tiết người dùng";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    var donhang = ViewBag.DonHang as List<QLBanSach.Models.DonHang>;
+    int page = ViewBag.Page;
+    int totalPages = ViewBag.TotalPages;
+    bool isAdmin = ViewBag.IsAdmin;
 }
 <link href="~/css/account.css" rel="stylesheet" />
 
-<div class="container mt-4 user-profile">
-    <div class="card shadow-sm p-4">
+<div class="container mt-4">
+
+    <!-- CARD THÔNG TIN NGƯỜI DÙNG -->
+    <div class="card shadow-sm p-4 mb-4">
         <div class="row">
 
-            <!-- Cột trái: avatar và info cơ bản -->
+            <!-- Avatar + nút -->
             <div class="col-md-3 text-center border-end">
                 <img src="~/Avatar/Avatar.jpg"
-                     alt="Avatar"
-                     class="img-fluid rounded-circle mb-3"
+                     class="img-fluid rounded-circle mb-3 shadow"
                      style="width: 180px; height: 180px; object-fit: cover;">
 
-                <h5 class="mt-2">@Model.HoTen</h5>
+                <h5 class="mt-3">@Model.HoTen</h5>
                 <p class="text-muted">@Model.Email</p>
 
-                <div class="d-flex justify-content-center mt-3" style="gap: 10px;">
+                <div class="mt-3 d-flex justify-content-center" style="gap:10px;">
                     <a asp-action="Edit" asp-route-id="@Model.MaNguoiDung" class="btn btn-primary">
-                        Chỉnh sửa
+                        <i class="bi bi-pencil-square"></i> Chỉnh sửa
                     </a>
                     <a asp-action="Index" class="btn btn-secondary">
-                        Quay lại
+                        <i class="bi bi-arrow-left"></i> Quay lại
                     </a>
                 </div>
             </div>
 
-            <!-- Cột phải: thông tin chi tiết -->
-            <div class="col-md-9">
-                <h4 class="mb-3">Thông tin tài khoản</h4>
+            <!-- Thông tin -->
+            <div class="col-md-9 ps-4">
+                <h4><i class="bi bi-person-vcard me-2"></i>Thông tin tài khoản</h4>
                 <hr />
+
                 <dl class="row">
-                    <dt class="col-sm-3 fw-bold">Tài khoản</dt>
+                    <dt class="col-sm-3 fw-bold">Tài khoản:</dt>
                     <dd class="col-sm-9">@Model.TaiKhoan</dd>
 
-                    <dt class="col-sm-3 fw-bold">Họ tên</dt>
+                    <dt class="col-sm-3 fw-bold">Họ tên:</dt>
                     <dd class="col-sm-9">@Model.HoTen</dd>
 
-                    <dt class="col-sm-3 fw-bold">Email</dt>
+                    <dt class="col-sm-3 fw-bold">Email:</dt>
                     <dd class="col-sm-9">@Model.Email</dd>
 
-                    <dt class="col-sm-3 fw-bold">Số điện thoại</dt>
+                    <dt class="col-sm-3 fw-bold">Số điện thoại:</dt>
                     <dd class="col-sm-9">@Model.SoDienThoai</dd>
 
-                    <dt class="col-sm-3 fw-bold">Địa chỉ</dt>
+                    <dt class="col-sm-3 fw-bold">Địa chỉ:</dt>
                     <dd class="col-sm-9">@Model.DiaChi</dd>
 
-                    <dt class="col-sm-3 fw-bold">Vai trò</dt>
-                    <dd class="col-sm-9">@(Model.VaiTro ? "Admin" : "User")</dd>
+                    <dt class="col-sm-3 fw-bold">Vai trò:</dt>
+                    <dd class="col-sm-9">@((Model.VaiTro ? "Admin" : "User"))</dd>
                 </dl>
             </div>
-
         </div>
     </div>
+
+
+
+
+    <!-- LỊCH SỬ MUA HÀNG -->
+    @if (!isAdmin)
+    {
+        <div class="card shadow-sm p-4 mb-4">
+            <h4><i class="bi bi-receipt-cutoff me-2"></i>Lịch sử mua hàng</h4>
+            <hr />
+
+            @if (donhang == null || donhang.Count == 0)
+            {
+                <p class="text-muted fst-italic">Người dùng chưa có đơn hàng nào.</p>
+            }
+            else
+            {
+                <table class="table table-bordered table-hover mt-3">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Mã đơn</th>
+                            <th>Ngày đặt</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var dh in donhang)
+                        {
+                            <tr>
+                                <td>@dh.MaDonHang</td>
+                                <td>@dh.NgayDat.ToString("dd/MM/yyyy")</td>
+                                <td>@dh.TongTien.ToString("N0") đ</td>
+                                <td>@dh.TrangThai</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <!-- PHÂN TRANG -->
+                <nav class="mt-3">
+                    <ul class="pagination justify-content-center">
+
+                        <!-- Prev -->
+                        <li class="page-item @(page <= 1 ? "disabled" : "")">
+                            <a class="page-link" href="?id=@Model.MaNguoiDung&page=@(page - 1)">«</a>
+                        </li>
+
+                        @for (int i = 1; i <= totalPages; i++)
+                        {
+                            <li class="page-item @(page == i ? "active" : "")">
+                                <a class="page-link" href="?id=@Model.MaNguoiDung&page=@i">@i</a>
+                            </li>
+                        }
+
+                        <!-- Next -->
+                        <li class="page-item @(page >= totalPages ? "disabled" : "")">
+                            <a class="page-link" href="?id=@Model.MaNguoiDung&page=@(page + 1)">»</a>
+                        </li>
+                    </ul>
+                </nav>
+            }
+        </div>
+    }
 </div>

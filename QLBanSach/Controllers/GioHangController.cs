@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.EntityFrameworkCore;
 using QLBanSach.Data.ChiTietDonHangRepository;
 using QLBanSach.Data.ChiTietGioHangRepository;
@@ -16,9 +17,9 @@ namespace QLBanSach.Controllers
         private readonly IChiTietGioHangRepository _chiTietGioHangRepository;
         private readonly IDonHangRepository _donHangRepository;
         private readonly IChiTietDonHangRepository _chiTietDonHangRepository;
-        private readonly ISacRepository _sachRepository;
+        private readonly ISachRepository _sachRepository;
 
-        public GioHangController(IGioHangRepository gioHangRepository, IChiTietGioHangRepository chiTietGioHangRepository, IDonHangRepository donHangRepository, IChiTietDonHangRepository chiTietDonHangRepository, ISacRepository sachRepository)
+        public GioHangController(IGioHangRepository gioHangRepository, IChiTietGioHangRepository chiTietGioHangRepository, IDonHangRepository donHangRepository, IChiTietDonHangRepository chiTietDonHangRepository, ISachRepository sachRepository)
         {
             _gioHangRepository = gioHangRepository;
             _chiTietGioHangRepository = chiTietGioHangRepository;
@@ -111,7 +112,7 @@ namespace QLBanSach.Controllers
                 _gioHangRepository.Add(giohang);
                 _gioHangRepository.Save();
             }
-            var checksach = _chiTietGioHangRepository.CheckSach(masach);
+            var checksach = _chiTietGioHangRepository.CheckSach(giohang.MaGioHang,masach);
             if (checksach != null)
             {
                 TempData["Message"] = "Sản phẩm đã có trong giỏ hàng";
@@ -172,5 +173,6 @@ namespace QLBanSach.Controllers
                 return Json(new { success = false });
             }
         }
-    } 
+
+    }
 }

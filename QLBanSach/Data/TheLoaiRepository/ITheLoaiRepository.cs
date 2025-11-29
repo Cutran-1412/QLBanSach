@@ -10,5 +10,6 @@ namespace QLBanSach.Data.TheLoaiRepository
         void Update(TheLoai theloai);
         void Delete(TheLoai theloai);
         void Save();
+        bool IsUsedInSach(string maTheLoai);
     }
 }

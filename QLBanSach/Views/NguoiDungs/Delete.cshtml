@@ -5,27 +5,35 @@
 }
 <link href="~/css/account.css" rel="stylesheet" />
 
-
 <div class="container mt-4">
     <div class="card shadow-sm p-4">
-        <h2 class="text-danger mb-4">⚠ Xóa người dùng</h2>
-        <p>Bạn có chắc chắn muốn xóa người dùng này không?</p>
+
+        <div class="d-flex align-items-center mb-4">
+            <i class="bi bi-exclamation-triangle-fill text-danger fs-1 me-3"></i>
+            <h2 class="text-danger m-0">Xác nhận xóa người dùng</h2>
+        </div>
+
+        <p class="text-muted mb-4">
+            Bạn có chắc chắn muốn xóa người dùng này? Hành động này không thể hoàn tác.
+        </p>
 
         <div class="row">
-            <!-- Cột trái: avatar -->
+            <!-- Avatar -->
             <div class="col-md-3 text-center border-end">
                 <img src="~/Avatar/Avatar.jpg"
                      alt="Avatar"
-                     class="img-fluid rounded-circle mb-3"
-                     style="width: 150px; height: 150px; object-fit: cover;">
+                     class="img-fluid rounded-circle mb-3 shadow-sm"
+                     style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #ddd;">
+
                 <h5 class="mt-2">@Model.HoTen</h5>
                 <p class="text-muted">@Model.Email</p>
             </div>
 
-            <!-- Cột phải: thông tin chi tiết -->
-            <div class="col-md-9">
+            <!-- Thông tin chi tiết -->
+            <div class="col-md-9 ps-4">
                 <h4 class="mb-3">Thông tin người dùng</h4>
                 <hr />
+
                 <dl class="row">
                     <dt class="col-sm-3 fw-bold">Tài khoản</dt>
                     <dd class="col-sm-9">@Model.TaiKhoan</dd>
@@ -36,20 +44,33 @@
                     <dt class="col-sm-3 fw-bold">Email</dt>
                     <dd class="col-sm-9">@Model.Email</dd>
 
-                    <dt class="col-sm-3 fw-bold">Số điện thoại</dt>
+                    <dt class="col-sm-3 fw-bold">SĐT</dt>
                     <dd class="col-sm-9">@Model.SoDienThoai</dd>
 
                     <dt class="col-sm-3 fw-bold">Địa chỉ</dt>
                     <dd class="col-sm-9">@Model.DiaChi</dd>
 
                     <dt class="col-sm-3 fw-bold">Vai trò</dt>
-                    <dd class="col-sm-9">@(Model.VaiTro ? "Admin" : "User")</dd>
+                    <dd class="col-sm-9">
+                        @(Model.VaiTro ? "Admin" : "User")
+                    </dd>
                 </dl>
 
                 <form asp-action="Delete" method="post" class="mt-4">
                     <input type="hidden" asp-for="MaNguoiDung" />
-                    <button type="submit" class="btn btn-danger me-2">Xóa</button>
-                    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+
+                    <div class="alert alert-warning d-flex align-items-center mb-4">
+                        <i class="bi bi-exclamation-circle-fill me-2"></i>
+                        <span>Bạn chắc chắn muốn xóa? Hành động không thể hoàn tác.</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger me-2 px-4">
+                        <i class="bi bi-trash-fill me-1"></i> Xóa
+                    </button>
+
+                    <a asp-action="Index" class="btn btn-secondary px-4">
+                        <i class="bi bi-arrow-left-circle me-1"></i> Quay lại
+                    </a>
                 </form>
             </div>
         </div>

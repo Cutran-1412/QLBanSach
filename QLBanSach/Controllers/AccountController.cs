@@ -78,12 +78,18 @@ namespace QLBanSach.Controllers
 
             if (existingUser != null)
             {
-                TempData["Message"] = "Tên đăng nhập đã được sử dụng!";
-                TempData["MesseType"] = "error";
+                TempData["Message"] = "Tài khoản trùng ";
+                TempData["MessageType"] = "warning";
+                return View(user);
+            }
+            if (_nguoiDungRepository.EmailExists(user.Email))
+            {
+                TempData["Message"] = "Email bị trùng ";
+                TempData["MessageType"] = "warning";
                 return View(user);
             }
             TempData["Message"] = "Đăng ký thành công!";
-            TempData["MesseType"] = "success";
+            TempData["MessageType"] = "success";
             user.MaNguoiDung = GenerateMaNguoiDung();
             _nguoiDungRepository.Add(user);
             _nguoiDungRepository.Save();
@@ -106,8 +112,8 @@ namespace QLBanSach.Controllers
         {
             if (string.IsNullOrEmpty(email))
             {
-                TempData["Message"] = "Vui lòng nhập Email!";
-                TempData["MesseType"] = "error";
+                TempData["Message"] = "Vui lòng kiểm tra email để nhận mật khẩu mới!";
+                TempData["MessageType"] = "warning";
                 return View();
             }
 
@@ -116,17 +122,15 @@ namespace QLBanSach.Controllers
 
             if (user == null)
             {
-                TempData["Message"] = "Email không tồn tại!";
-                TempData["MesseType"] = "error";
+                TempData["Message"] = "Vui lòng kiểm tra email không tồn tại!";
+                TempData["MessageType"] = "warning";
                 return View();
             }
             string newPassword = "123456";
             user.MatKhau = newPassword;
             _nguoiDungRepository.Save();
-
             TempData["Message"] = "Mật khẩu mới đã được gửi đến Email!";
-            TempData["MesseType"] = "success";
-
+            TempData["MessageType"] = "success";
             return RedirectToAction("Login");
         }
         [HttpGet]

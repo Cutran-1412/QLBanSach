@@ -3,8 +3,35 @@
 @{
     ViewData["Title"] = "Chi tiết sách";
 }
+<style>
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #e9ecef;
+        border: none;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        color: #333;
+        transition: 0.2s;
+    }
 
-<div class="container mt-4">
+        .close-btn:hover {
+            background: #ced4da;
+        }
+</style>
+<div class="container mt-4 position-relative">
+
+    <!-- Nút X quay lại -->
+    <a asp-action="Index" class="close-btn">
+        <i class="fa-solid fa-xmark"></i>
+    </a>
 
     <div class="row">
         <div class="col-md-4 text-center">
@@ -12,6 +39,7 @@
                  class="img-fluid rounded shadow"
                  style="max-height: 420px; object-fit: cover;" />
         </div>
+
         <div class="col-md-8">
             <h2 class="fw-bold">@Model.TenSach</h2>
             <hr />
@@ -36,19 +64,27 @@
                     @Model.MoTa
                 </div>
             </div>
-           <div class="mt-4">
-            <form method="post" action="@Url.Action("InsertGioHang", "GioHang")" class="d-inline">
-                <input type="hidden" name="id" value="@Context.Session.GetString("UserId")" />
-                <input type="hidden" name="maSach" value="@Model.MaSach" />
-                <button type="submit" class="btn btn-success px-4 me-2">
-                    Thêm vào giỏ
-                </button>
-            </form>
 
-            <a class="btn btn-secondary px-4" asp-action="Index">Quay lại</a>
-        </div>
+            <div class="mt-4">
+
+                @{
+                    bool isAdmin = Context.Session.GetString("VaiTro") == "True";
+                    bool isLogged = Context.Session.GetString("UserId") != null;
+                }
+
+                @if (!isAdmin)
+                {
+                    <form method="post" action="@Url.Action("InsertGioHang", "GioHang")" class="d-inline">
+                        <input type="hidden" name="id" value="@Context.Session.GetString("UserId")" />
+                        <input type="hidden" name="maSach" value="@Model.MaSach" />
+                        <button type="submit" class="btn btn-success px-4 me-2">
+                            Thêm vào giỏ
+                        </button>
+                    </form>
+                }
+
+            </div>
+
         </div>
     </div>
-
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

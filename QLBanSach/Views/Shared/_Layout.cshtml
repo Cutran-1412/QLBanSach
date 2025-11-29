@@ -1,4 +1,26 @@
-﻿<!DOCTYPE html>
+﻿@inject QLBanSach.Data.GioHangRepository.IGioHangRepository GioRepo
+@inject QLBanSach.Data.ChiTietGioHangRepository.IChiTietGioHangRepository CTRepo
+@inject QLBanSach.Data.DonHangRepository.IDonHangRepository DonHangRepo
+@{
+    string userId = Context.Session.GetString("UserId");
+    int cartCount = 0;
+
+    if (!string.IsNullOrEmpty(userId))
+    {
+        var gio = GioRepo.GetData().FirstOrDefault(g => g.MaNguoiDung == userId);
+        if (gio != null)
+        {
+            cartCount = CTRepo.GetAll().Count(ct => ct.MaGioHang == gio.MaGioHang);
+        }
+    }
+    int donHangCount = 0;
+
+    if (!string.IsNullOrEmpty(userId))
+    {
+        donHangCount = DonHangRepo.GetAll().Count(d => d.MaNguoiDung == userId);
+    }
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,12 +32,71 @@
     <link rel="stylesheet" href="~/QLBanSach.styles.css" asp-append-version="true" />
     <link href="~/css/layout.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        .floating-group {
+            position: relative;
+        }
+
+        .floating-input {
+            height: 50px;
+            padding: 10px 12px;
+            border-radius: 8px;
+        }
+
+        .floating-label {
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            transform: translateY(-50%);
+            color: #777;
+            transition: 0.2s ease;
+            pointer-events: none;
+        }
+
+        .floating-input:focus + .floating-label,
+        .floating-input:not(:placeholder-shown) + .floating-label {
+            top: -6px;
+            font-size: 13px;
+            background: #fff;
+            padding: 0 4px;
+            color: #0d6efd;
+        }
+
+        .my-toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: black !important; /* CHỮ MÀU ĐEN */
+            background-color: #BEE3FF !important; /* NỀN XANH NHẠT */
+            border: 2px solid #0d6efd; /* VIỀN XANH ĐẬM */
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity .4s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+            /* Khi hiển thị */
+            .my-toast.show {
+                opacity: 1;
+            }
+
+
+    </style>
+
 </head>
+
+
 <body>
     @if (TempData["Message"] != null)
     {
-        var type = TempData["MesseType"]?.ToString() ?? "success";
-        <div id="toast-messe" class="toast-messe @type">
+        <div class="my-toast">
             @TempData["Message"]
         </div>
     }
@@ -35,6 +116,7 @@
                         <form asp-controller="Account" asp-action="Details" method="post">
                             <input type="hidden" name="id" value="@Context.Session.GetString("UserId")" />
                             <button type="submit" class="nav-btn ms-2">
+                                <i class="fa-solid fa-user"></i>
                                 Xin chào, @Context.Session.GetString("UserName")
                             </button>
                         </form>
@@ -42,29 +124,32 @@
 
                     @if (isAdmin)
                     {
-                        <li class="nav-item ms-2">
-                            <a class="nav-btn btn btn-warning" href="@Url.Action("Index", "Admin")">
-                                Quản lý
+                        <li class="nav-item">
+                            <a class="nav-btn ms-2" href="@Url.Action("Index", "Admin")">
+                                <i class="fa-solid fa-gears"></i> Quản lý
                             </a>
                         </li>
                     }
                     else
                     {
+
+
                         <li class="nav-item ms-2">
                             <form method="get" action="@Url.Action("Index", "GioHang")" class="d-inline">
                                 <input type="hidden" name="id" value="@Context.Session.GetString("UserId")" />
-
-                                <button type="submit" class="nav-btn btn btn-primary">
-                                    Giỏ hàng
+                                <button type="submit" class="nav-btn">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    Giỏ hàng (@cartCount)
                                 </button>
                             </form>
                         </li>
+
                         <li class="nav-item ms-2">
                             <form method="get" action="@Url.Action("Index", "DonHang")" class="d-inline">
                                 <input type="hidden" name="id" value="@Context.Session.GetString("UserId")" />
-
-                                <button type="submit" class="nav-btn btn btn-primary">
-                                    Đơn hàng
+                                <button type="submit" class="nav-btn">
+                                    <i class="fa-solid fa-box"></i>
+                                    Đơn hàng (@donHangCount)
                                 </button>
                             </form>
                         </li>
@@ -72,8 +157,9 @@
 
                     <li class="nav-item">
                         <form asp-controller="Account" asp-action="Logout" method="post">
-                            <button type="submit" class="nav-btn ms-2">
-                                Đăng xuất
+                            <button type="button" class="nav-btn ms-2"
+                                    data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
                             </button>
                         </form>
                     </li>
@@ -83,43 +169,89 @@
                     <li class="nav-item me-3">
                         <button class="nav-btn"
                                 onclick="window.location.href='@Url.Action("Login", "Account")'">
-                            Đăng nhập
+                            <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
                         </button>
                     </li>
 
                     <li class="nav-item">
                         <button class="nav-btn"
                                 onclick="window.location.href='@Url.Action("Create", "Account")'">
-                            Đăng ký
+                            <i class="fa-solid fa-user-plus"></i> Đăng ký
                         </button>
                     </li>
                 }
             </ul>
 
+
         </div>
     </div>
     <header>
         <nav class="navbar navbar-expand-sm bg-white border-bottom shadow-sm mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            <div class="container-fluid align-items-center">
 
-                <form class="d-flex mx-auto" asp-action="Index" asp-controller="Home" method="get"
-                      style="width:60%; max-width:600px; position:relative;">
+                <a class="navbar-brand fs-3 fw-bold me-4 d-flex align-items-center"
+                   style="height: 48px;"
+                   asp-area="" asp-controller="Home" asp-action="Index">
+                    WebBanSach.com
+                </a>
 
-                    <div class="floating-group me-2" style="width:100%;">
-                        <input type="text" id="TenSach" name="TenSach"
-                               class="form-control floating-input"
-                               placeholder=" ">
-                        <label for="TenSach" class="floating-label">Tìm kiếm sản phẩm</label>
+                <form method="get" class="row g-2 w-100">
+                    <div class="col-12">
+                        <input type="text" name="TenSach" class="form-control form-control-lg"
+                               placeholder="Tìm kiếm sản phẩm..."
+                               value="@(ViewBag.Search?.TenSach)" />
                     </div>
 
-                    <button class="btn btn-primary ms-2" style="height:48px; font-size:16px; width:140px;">
-                        Tìm kiếm
-                    </button>
+                    <div class="col-md-2">
+                        <input type="number" name="GiaTu" class="form-control"
+                               placeholder="Giá từ"
+                               value="@(ViewBag.Search?.GiaTu)" />
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="number" name="GiaDen" class="form-control"
+                               placeholder="Giá đến"
+                               value="@(ViewBag.Search?.GiaDen)" />
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="text" name="TacGia" class="form-control"
+                               placeholder="Tác giả"
+                               value="@(ViewBag.Search?.TacGia)" />
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="text" name="NhaXuatBan" class="form-control"
+                               placeholder="Nhà xuất bản"
+                               value="@(ViewBag.Search?.NhaXuatBan)" />
+                    </div>
+
+                    <div class="col-md-2">
+                        <select name="SapXep" class="form-select">
+                            <option value="">Sắp xếp theo giá</option>
+                            <option value="asc" selected="@(ViewBag.Search?.SapXep == "asc")">
+                                Giá tăng dần
+                            </option>
+                            <option value="desc" selected="@(ViewBag.Search?.SapXep == "desc")">
+                                Giá giảm dần
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">
+                            Tìm kiếm
+                        </button>
+                    </div>
+
                 </form>
+
             </div>
         </nav>
     </header>
+
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -174,7 +306,57 @@
                 setTimeout(() => toast.classList.remove('show'), 3000);
             }
         });
+                                 document.addEventListener("DOMContentLoaded", () => {
+            const toast = document.querySelector(".my-toast");
+            if (toast) {
+                toast.classList.add("show");
+                setTimeout(() => toast.classList.remove("show"), 3000);
+            }
+        });
+                document.addEventListener("DOMContentLoaded", () => {
+            const logoutForm = document.querySelector('form[asp-action="Logout"]');
+
+            if (logoutForm) {
+                logoutForm.addEventListener("submit", function (e) {
+                    const confirmLogout = confirm("Bạn có chắc chắn muốn đăng xuất không?");
+                    if (!confirmLogout) {
+                        e.preventDefault();
+                    }
+                });
+            }
+        });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <form method="post" asp-controller="Account" asp-action="Logout">
+
+                    @Html.AntiForgeryToken()
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Xác nhận đăng xuất</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        Bạn có chắc chắn muốn đăng xuất khỏi tài khoản không?
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Không
+                        </button>
+                        <button type="submit" class="btn btn-danger">
+                            Có, đăng xuất
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext") ?? throw new InvalidOperationException("Connection string 'AppDbContext' not found.")));
 builder.Services.AddScoped<INguoiDungRepository, NguoiDungRepository>();
-builder.Services.AddScoped<ISacRepository,SachRepository>();
+builder.Services.AddScoped<ISachRepository,SachRepository>();
 builder.Services.AddScoped<ITheLoaiRepository, TheLoaiRepository>();
 builder.Services.AddScoped<IGioHangRepository, GioHangRepository>();
 builder.Services.AddScoped<IDonHangRepository, DonHangRepository>();

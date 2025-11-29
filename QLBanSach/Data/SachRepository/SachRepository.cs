@@ -2,7 +2,7 @@
 
 namespace QLBanSach.Data.SachRepository
 {
-    public class SachRepository : ISacRepository
+    public class SachRepository : ISachRepository
     {
         private readonly AppDbContext _context;
 

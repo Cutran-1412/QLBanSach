@@ -2,7 +2,7 @@
 
 namespace QLBanSach.Data.SachRepository
 {
-    public interface ISacRepository
+    public interface ISachRepository
     {
         IEnumerable<Sach> GetAll();
         Sach GetById(string id);

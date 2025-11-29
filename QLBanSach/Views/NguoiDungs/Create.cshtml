@@ -6,8 +6,13 @@
 }
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="text-primary fw-bold">➕ Thêm người dùng</h2>
-    <a asp-action="Index" class="btn btn-outline-primary">← Quay lại</a>
+    <h2 class="text-primary fw-bold">
+        <i class="bi bi-person-plus-fill"></i> Thêm người dùng
+    </h2>
+
+    <a asp-action="Index" class="btn btn-outline-primary px-3">
+        <i class="bi bi-arrow-left"></i> Quay lại
+    </a>
 </div>
 
 <div class="card shadow border-0">
@@ -16,77 +21,114 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-            <!-- Mã người dùng -->
-            <div class="mb-3">
-                <label class="form-label">Mã người dùng</label>
-                <input class="form-control bg-light" value="@ViewBag.MaNguoiDung" readonly />
-                <input type="hidden" asp-for="MaNguoiDung" value="@ViewBag.MaNguoiDung" />
-                <span asp-validation-for="MaNguoiDung" class="text-danger"></span>
-            </div>
+            <div class="row g-3">
 
-            <!-- Tài khoản -->
-            <div class="mb-3">
-                <label asp-for="TaiKhoan" class="form-label"></label>
-                <input asp-for="TaiKhoan" class="form-control" />
-                <span asp-validation-for="TaiKhoan" class="text-danger"></span>
-            </div>
+                <!-- Mã người dùng -->
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Mã người dùng</label>
+                    <input class="form-control bg-light" value="@ViewBag.MaNguoiDung" readonly />
+                    <input type="hidden" asp-for="MaNguoiDung" value="@ViewBag.MaNguoiDung" />
+                    <span asp-validation-for="MaNguoiDung" class="text-danger"></span>
+                </div>
 
-            <!-- Mật khẩu -->
-            <div class="mb-3">
-                <label asp-for="MatKhau" class="form-label"></label>
-                <input asp-for="MatKhau" class="form-control" type="password" />
-                <span asp-validation-for="MatKhau" class="text-danger"></span>
-            </div>
+                <!-- Tài khoản -->
+                <div class="col-md-6">
+                    <label asp-for="TaiKhoan" class="form-label fw-semibold"></label>
+                    <input asp-for="TaiKhoan" class="form-control" placeholder="Nhập tài khoản..." />
+                    <span asp-validation-for="TaiKhoan" class="text-danger"></span>
+                </div>
 
-            <!-- Họ tên -->
-            <div class="mb-3">
-                <label asp-for="HoTen" class="form-label"></label>
-                <input asp-for="HoTen" class="form-control" />
-                <span asp-validation-for="HoTen" class="text-danger"></span>
-            </div>
+                <!-- Mật khẩu (có hiện/ẩn) -->
+                <div class="col-md-6">
+                    <label asp-for="MatKhau" class="form-label fw-semibold"></label>
 
-            <!-- Email -->
-            <div class="mb-3">
-                <label asp-for="Email" class="form-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
+                    <div class="input-group">
+                        <input asp-for="MatKhau"
+                               id="passwordInput"
+                               type="password"
+                               class="form-control"
+                               placeholder="Nhập mật khẩu..." />
 
-            <!-- Số điện thoại -->
-            <div class="mb-3">
-                <label asp-for="SoDienThoai" class="form-label"></label>
-                <input asp-for="SoDienThoai" class="form-control" />
-                <span asp-validation-for="SoDienThoai" class="text-danger"></span>
-            </div>
+                        <span class="input-group-text" id="togglePassword" style="cursor:pointer;">
+                            <i class="bi bi-eye-slash" id="passwordIcon"></i>
+                        </span>
+                    </div>
 
-            <!-- Địa chỉ -->
-            <div class="mb-3">
-                <label asp-for="DiaChi" class="form-label"></label>
-                <input asp-for="DiaChi" class="form-control" />
-                <span asp-validation-for="DiaChi" class="text-danger"></span>
-            </div>
+                    <span asp-validation-for="MatKhau" class="text-danger"></span>
+                </div>
 
-            <!-- Vai trò -->
-            <div class="mb-3">
-                <label class="form-label">Vai trò</label>
-                <select asp-for="VaiTro" class="form-select">
-                    <option value="false">Người dùng</option>
-                    <option value="true">Quản trị viên</option>
-                </select>
-                <span asp-validation-for="VaiTro" class="text-danger"></span>
+                <!-- Họ tên -->
+                <div class="col-md-6">
+                    <label asp-for="HoTen" class="form-label fw-semibold"></label>
+                    <input asp-for="HoTen" class="form-control" placeholder="Nhập họ tên..." />
+                    <span asp-validation-for="HoTen" class="text-danger"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6">
+                    <label asp-for="Email" class="form-label fw-semibold"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Nhập email..." />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Số điện thoại -->
+                <div class="col-md-6">
+                    <label asp-for="SoDienThoai" class="form-label fw-semibold"></label>
+                    <input asp-for="SoDienThoai" class="form-control" placeholder="Nhập SĐT..." />
+                    <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                </div>
+
+                <!-- Địa chỉ -->
+                <div class="col-md-12">
+                    <label asp-for="DiaChi" class="form-label fw-semibold"></label>
+                    <input asp-for="DiaChi" class="form-control" placeholder="Nhập địa chỉ..." />
+                    <span asp-validation-for="DiaChi" class="text-danger"></span>
+                </div>
+
+                <!-- Vai trò -->
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">
+                        <i class="bi bi-people-fill"></i> Vai trò
+                    </label>
+                    <select asp-for="VaiTro" class="form-select">
+                        <option value="false">Người dùng</option>
+                        <option value="true">Quản trị viên</option>
+                    </select>
+                    <span asp-validation-for="VaiTro" class="text-danger"></span>
+                </div>
             </div>
 
             <!-- Nút submit -->
-            <button type="submit" class="btn btn-primary px-4">
-                ✔ Thêm mới
-            </button>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary px-4">
+                    <i class="bi bi-check-circle-fill"></i> Thêm mới
+                </button>
+            </div>
         </form>
 
     </div>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        const passwordInput = document.getElementById("passwordInput");
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordIcon = document.getElementById("passwordIcon");
+
+        togglePassword.addEventListener("click", function () {
+            const type = passwordInput.type === "password" ? "text" : "password";
+            passwordInput.type = type;
+
+            // đổi icon
+            if (type === "text") {
+                passwordIcon.classList.remove("bi-eye-slash");
+                passwordIcon.classList.add("bi-eye");
+            } else {
+                passwordIcon.classList.remove("bi-eye");
+                passwordIcon.classList.add("bi-eye-slash");
+            }
+        });
+    </script>
 }

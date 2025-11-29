@@ -11,10 +11,11 @@ namespace QLBanSach.Data.ChiTietGioHangRepository
         void Add(ChiTietGioHang chitietgiohang);
         void Update(ChiTietGioHang chiTietGioHang);
         void Save();
-        ChiTietGioHang CheckSach(string name);
+        ChiTietGioHang CheckSach(string ma,string name);
         ChiTietGioHang GetById(string id);
         void CapNhatSoLuong(string maChiTiet, int soLuong);
         void Delete(ChiTietGioHang chiTietGioHang);
         decimal GetPrice(string madongiohang);
+        int soluong(string magiohang);
     }
 }

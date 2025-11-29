@@ -12,5 +12,6 @@ namespace QLBanSach.Data.DonHangRepository
         void Delete(DonHang donHang);
         void Save();
         DonHang GetById(string id);
+        IEnumerable<DonHang> GetTop3DonMoiNhat();
     }
 }

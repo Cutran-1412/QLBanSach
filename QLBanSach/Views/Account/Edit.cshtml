@@ -1,57 +1,167 @@
 ﻿@model QLBanSach.Models.NguoiDung
 
-<div class="container-fluid min-vh-100 d-flex flex-column p-4">
-    <h2 class="mb-4">Sửa thông tin người dùng</h2>
-    <form asp-action="Edit" method="post" class="flex-grow-1 d-flex flex-column" style="min-height: 0;">
-        @Html.AntiForgeryToken()
-        <input type="hidden" asp-for="MaNguoiDung" />
+@* Styles *@
+<style>
+    .edit-user-form {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 14px;
+        padding: 30px 25px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        position: relative;
+    }
 
-        <div class="mb-3 w-100">
-            <label class="form-label">Tên đăng nhập</label>
-            <input asp-for="TaiKhoan" class="form-control" />
-            <span asp-validation-for="TaiKhoan" class="text-danger"></span>
-        </div>
+        .edit-user-form h2 {
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-align: center;
+        }
 
-        <div class="mb-3 w-100 position-relative">
-            <label class="form-label">Mật khẩu</label>
-            <input asp-for="MatKhau" type="password" id="password" class="form-control pe-5" />
-            <button type="button" id="togglePassword"
-                    class="btn position-absolute top-50 end-0 translate-middle-y me-2 p-0"
-                    style="background: none; border: none; width: 40px; height: 40px; cursor: pointer;">
-                <img src="/path/to/your/icon-eye.png" alt="Hiện/Ẩn" style="width: 20px; height: 20px;">
-            </button>
-            <span asp-validation-for="MatKhau" class="text-danger"></span>
-        </div>
+        .edit-user-form .form-label {
+            font-weight: 500;
+        }
 
-        <div class="mb-3 w-100">
-            <label class="form-label">Họ tên</label>
-            <input asp-for="HoTen" class="form-control" />
-            <span asp-validation-for="HoTen" class="text-danger"></span>
-        </div>
+        .edit-user-form .form-control {
+            border-radius: 8px;
+            padding: 10px 12px;
+            transition: 0.2s;
+        }
 
-        <div class="mb-3 w-100">
-            <label class="form-label">Email</label>
-            <input asp-for="Email" type="email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
+            .edit-user-form .form-control:focus {
+                border-color: #0d6efd;
+                box-shadow: 0 0 0 1px #0d6efd;
+            }
 
-        <div class="mb-3 w-100">
-            <label class="form-label">Số điện thoại</label>
-            <input asp-for="SoDienThoai" class="form-control" />
-            <span asp-validation-for="SoDienThoai" class="text-danger"></span>
-        </div>
+        .edit-user-form .btn {
+            border-radius: 8px;
+            padding: 8px 18px;
+        }
 
-        <div class="mb-3 w-100">
-            <label class="form-label">Địa chỉ</label>
-            <input asp-for="DiaChi" class="form-control" />
-            <span asp-validation-for="DiaChi" class="text-danger"></span>
-        </div>
+        .edit-user-form .btn-secondary {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-        <div class="mt-auto d-flex">
-            <button type="submit" class="btn btn-success me-2">Lưu thay đổi</button>
-            <a asp-action="Details" asp-route-id="@Model?.MaNguoiDung" class="btn btn-secondary">Quay lại</a>
-        </div>
-    </form>
+        /* Nút đóng kiểu × góc phải */
+        .edit-user-form .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: #333;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+            .edit-user-form .close-btn:hover {
+                color: #0d6efd;
+            }
+
+    /* Password wrapper */
+    .password-wrapper {
+        position: relative;
+    }
+
+        .password-wrapper input {
+            padding-right: 44px !important; /* chừa chỗ cho nút */
+        }
+
+        .password-wrapper button {
+            position: absolute;
+            bottom: 10px; /* căn sát dưới */
+            right: 12px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            color: #777;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+            .password-wrapper button:hover {
+                color: #0d6efd;
+            }
+
+</style>
+
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center p-4">
+    <div class="edit-user-form">
+
+        <!-- Nút đóng góc phải -->
+        <form asp-controller="Home" asp-action="Index" method="post">
+            <button type="submit" class="close-btn" aria-label="Đóng form">&times;</button>
+        </form>
+
+        <h2>Sửa thông tin người dùng</h2>
+
+        <form asp-action="Edit" method="post" class="d-flex flex-column gap-3" novalidate>
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="MaNguoiDung" />
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="TaiKhoan">Tên đăng nhập</label>
+                <input asp-for="TaiKhoan" class="form-control" />
+                <span asp-validation-for="TaiKhoan" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 password-wrapper">
+                <label class="form-label" asp-for="MatKhau">Mật khẩu</label>
+                <input asp-for="MatKhau" type="password" id="password" class="form-control" />
+                <button type="button" id="togglePassword" aria-label="Hiện/Ẩn mật khẩu">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+                <span asp-validation-for="MatKhau" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="HoTen">Họ tên</label>
+                <input asp-for="HoTen" class="form-control" />
+                <span asp-validation-for="HoTen" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="Email">Email</label>
+                <input asp-for="Email" type="email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="SoDienThoai">Số điện thoại</label>
+                <input asp-for="SoDienThoai" class="form-control" />
+                <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="DiaChi">Địa chỉ</label>
+                <input asp-for="DiaChi" class="form-control" />
+                <span asp-validation-for="DiaChi" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+                <a asp-action="Details" asp-route-id="@Model?.MaNguoiDung" class="btn btn-secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
 
 @section Scripts {
@@ -62,6 +172,11 @@
         togglePassword.addEventListener('click', function () {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
+
+            // Thay đổi icon FontAwesome
+            togglePassword.innerHTML = type === 'password'
+                ? '<i class="fa-solid fa-eye"></i>'
+                : '<i class="fa-solid fa-eye-slash"></i>';
         });
     </script>
 }

@@ -5,6 +5,105 @@
 }
 
 <link href="~/css/GioHang.css" rel="stylesheet" />
+
+<style>
+    .table thead {
+        background-color: #0d6efd;
+        color: white;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #0d6efd !important; /* Viền xanh biển */
+    }
+
+    .table {
+        border: 1px solid #0d6efd !important; /* Viền ngoài của bảng */
+        border-collapse: collapse !important; /* Gộp viền cho đẹp */
+    }
+
+        .table thead th {
+            background-color: #0d6efd !important; /* Xanh biển */
+            color: white !important; /* Chữ trắng */
+            text-align: center;
+            vertical-align: middle;
+        }
+    .table img {
+        width: 60px; /* Thu nhỏ chiều ngang */
+        height: 80px; /* Chiều cao vừa phải */
+        object-fit: cover; /* Cắt ảnh cho đẹp */
+        border-radius: 6px; /* Bo góc mềm mại */
+        box-shadow: 0 0 4px rgba(0,0,0,0.15);
+    }
+    .btn-outline-secondary.btn-sm {
+        color: #0d6efd;
+        border-color: #0d6efd;
+        transition: all 0.3s ease;
+    }
+
+        .btn-outline-secondary.btn-sm:hover {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+    .btn-danger:hover {
+        background-color: #b02a37;
+        border-color: #b02a37;
+    }
+
+    .so-luong-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .so-luong-text {
+        min-width: 38px;
+        padding: 6px 6px;
+        font-weight: bold;
+        font-size: 16px;
+        color: #0d6efd;
+        border: 1px solid #0d6efd;
+        border-radius: 8px;
+        text-align: center;
+        background: #eaf3ff;
+    }
+
+    .btn-minus, .btn-plus {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        font-size: 20px;
+        border-radius: 8px;
+        border: 1px solid #0d6efd;
+        background: white;
+        color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+    }
+
+
+    .so-luong-text {
+        min-width: 42px;
+        height: 36px;
+        padding: 0;
+        font-weight: bold;
+        font-size: 17px;
+        color: #0d6efd;
+        border: 1px solid #0d6efd;
+        border-radius: 8px;
+        text-align: center;
+        background: #eaf3ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+
 <h2 class="mb-3">Giỏ hàng của bạn</h2>
 
 @if (gioHang != null)
@@ -33,7 +132,7 @@ else
                     <th>Ảnh</th>
                     <th>Tên sách</th>
                     <th>Giá</th>
-                    <th>Số lượng</th>
+                    <th style="width:150px;">Số lượng</th>
                     <th>Tổng tiền</th>
                     <th>Hành động</th>
                 </tr>
@@ -46,7 +145,7 @@ else
                         <td>
                             @if(!string.IsNullOrEmpty(item.value.Sach?.Anh))
                             {
-                                <img src="~/Images/@item.value.Sach.Anh" alt="@item.value.Sach.TenSach" class="img-thumbnail" style="width:60px; height:auto;" />
+                                <img src="~/Images/@item.value.Sach.Anh" alt="@item.value.Sach.TenSach" class="img-thumbnail" />
                             }
                         </td>
                         <td>@item.value.Sach?.TenSach</td>
@@ -54,17 +153,17 @@ else
                             @(item.value.Sach != null ? item.value.Sach.Gia.ToString("N0") + " VNĐ" : "-")
                         </td>
                         <td>
-                            <div class="input-group" style="width:110px;">
-                                <button type="button" class="btn btn-outline-secondary btn-sm btn-minus">-</button>
-                                <input type="Text" min="1" class="form-control text-center so-luong" value="@item.value.SoLuong" />
-                                <button type="button" class="btn btn-outline-secondary btn-sm btn-plus">+</button>
+                            <div class="so-luong-box">
+                                <button type="button" class="btn-minus" data-max="@item.value.Sach.SoLuong">-</button>
+                                <span class="so-luong-text" data-value="@item.value.SoLuong">@item.value.SoLuong</span>
+                                <button type="button" class="btn-plus" data-max="@item.value.Sach.SoLuong">+</button>
                             </div>
                         </td>
                         <td class="tong-tien">
                             @(item.value.Sach != null ? (item.value.SoLuong * item.value.Sach.Gia).ToString("N0") + " VNĐ" : "-")
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-danger btn-remove" data-id="@item.value.MaChiTiet">
+                            <button type="button" class="btn btn-sm btn-danger btn-remove" data-id="@item.value.MaChiTiet" title="Xóa sản phẩm">
                                 <i class="fas fa-trash"></i> Xóa
                             </button>
                         </td>
@@ -87,100 +186,68 @@ else
 }
 
 @section Scripts {
-<script>
-function formatVND(number) {
-    return number.toLocaleString('vi-VN') + ' VNĐ';
-}
-
-function updateTongTienRow(row) {
-    const gia = parseInt(row.querySelector('.gia').dataset.gia);
-    const sl = parseInt(row.querySelector('.so-luong').value);
-    row.querySelector('.tong-tien').innerText = formatVND(gia * sl);
-    updateTongCong();
-}
-
-function updateTongCong() {
-    let tong = 0;
-    document.querySelectorAll('tbody tr').forEach(row => {
-        const gia = parseInt(row.querySelector('.gia').dataset.gia);
-        const sl = parseInt(row.querySelector('.so-luong').value);
-        tong += gia * sl;
-    });
-    document.getElementById('tong-cong').innerText = formatVND(tong);
-}
-
-function capNhatSoLuongServer(maChiTiet, soLuong) {
-    fetch('@Url.Action("UpdateSoLuong","GioHang")', {
-        method: 'POST',
-        headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: `maChiTiet=${maChiTiet}&soLuong=${soLuong}&__RequestVerificationToken=${$('input[name="__RequestVerificationToken"]').val()}`
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(!data.success) alert("Cập nhật số lượng thất bại!");
-    });
-}
-
-document.querySelectorAll('.so-luong').forEach(input => {
-    input.addEventListener('change', e => {
-        let sl = parseInt(e.target.value);
-        if(sl < 1) sl = 1;
-        e.target.value = sl;
-        const row = e.target.closest('tr');
-        const maChiTiet = row.dataset.id;
-        updateTongTienRow(row);
-        capNhatSoLuongServer(maChiTiet, sl);
-    });
-});
-
-document.querySelectorAll('.btn-plus').forEach(btn => {
-    btn.addEventListener('click', e => {
-        const input = e.target.closest('td').querySelector('.so-luong');
-        input.value = parseInt(input.value) + 1;
-        const row = e.target.closest('tr');
-        const maChiTiet = row.dataset.id;
-        updateTongTienRow(row);
-        capNhatSoLuongServer(maChiTiet, parseInt(input.value));
-    });
-});
-
-document.querySelectorAll('.btn-minus').forEach(btn => {
-    btn.addEventListener('click', e => {
-        const input = e.target.closest('td').querySelector('.so-luong');
-        if(parseInt(input.value) > 1) {
-            input.value = parseInt(input.value) - 1;
-            const row = e.target.closest('tr');
-            const maChiTiet = row.dataset.id;
-            updateTongTienRow(row);
-            capNhatSoLuongServer(maChiTiet, parseInt(input.value));
+    <script>
+        function formatVND(number) {
+            return number.toLocaleString('vi-VN') + ' VNĐ';
         }
-    });
-});
-updateTongCong();
 
-document.querySelectorAll('.btn-remove').forEach(btn => {
-    btn.addEventListener('click', e => {
-        const maChiTiet = btn.dataset.id;
-        if(!confirm("Bạn có chắc muốn xóa sản phẩm này?")) return;
+        function updateTongTienRow(row) {
+            const gia = parseInt(row.querySelector('.gia').dataset.gia);
+            const sl = parseInt(row.querySelector('.so-luong-text').dataset.value);
+            row.querySelector('.tong-tien').innerText = formatVND(gia * sl);
+            updateTongCong();
+        }
 
-        fetch('@Url.Action("RemoveChiTiet","GioHang")', {
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/x-www-form-urlencoded'
-            },
-            body: `maChiTiet=${maChiTiet}&__RequestVerificationToken=${$('input[name="__RequestVerificationToken"]').val()}`
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success) {
+        function updateTongCong() {
+            let tong = 0;
+            document.querySelectorAll('tbody tr').forEach(row => {
+                const gia = parseInt(row.querySelector('.gia').dataset.gia);
+                const sl = parseInt(row.querySelector('.so-luong-text').dataset.value);
+                tong += gia * sl;
+            });
+            document.getElementById('tong-cong').innerText = formatVND(tong);
+        }
+
+        function capNhatSoLuongServer(maChiTiet, soLuong) {
+            fetch('@Url.Action("UpdateSoLuong", "GioHang")', {
+                method: 'POST',
+                headers: {'Content-Type':'application/x-www-form-urlencoded'},
+                body: `maChiTiet=${maChiTiet}&soLuong=${soLuong}&__RequestVerificationToken=${$('input[name="__RequestVerificationToken"]').val()}`
+            });
+        }
+
+        document.querySelectorAll('.btn-plus').forEach(btn => {
+            btn.addEventListener('click', e => {
                 const row = btn.closest('tr');
-                row.remove();
-                updateTongCong();
-            } else {
-                alert("Xóa thất bại!");
-            }
+                const slText = row.querySelector('.so-luong-text');
+                const max = parseInt(btn.dataset.max);
+                let sl = parseInt(slText.dataset.value);
+
+                if (sl < max) sl++;
+                slText.dataset.value = sl;
+                slText.innerText = sl;
+
+                updateTongTienRow(row);
+                capNhatSoLuongServer(row.dataset.id, sl);
+            });
         });
-    });
-});
-</script>
+
+        document.querySelectorAll('.btn-minus').forEach(btn => {
+            btn.addEventListener('click', e => {
+                const row = btn.closest('tr');
+                const slText = row.querySelector('.so-luong-text');
+                let sl = parseInt(slText.dataset.value);
+
+                if (sl > 1) sl--;
+                slText.dataset.value = sl;
+                slText.innerText = sl;
+
+                updateTongTienRow(row);
+                capNhatSoLuongServer(row.dataset.id, sl);
+            });
+        });
+
+        updateTongCong();
+    </script>
+
 }

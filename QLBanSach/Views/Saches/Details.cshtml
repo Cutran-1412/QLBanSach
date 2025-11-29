@@ -1,72 +1,80 @@
 ﻿@model QLBanSach.Models.Sach
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết sách";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Details</h1>
+<h2 class="fw-bold text-primary mb-3">
+    <i class="bi bi-book-half"></i> Chi tiết sách
+</h2>
+<hr />
 
-<div>
-    <h4>Sach</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TenSach)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TenSach)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TacGia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TacGia)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NhaXuatBan)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NhaXuatBan)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NamXuatBan)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NamXuatBan)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gia)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SoLuong)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SoLuong)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MoTa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MoTa)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Anh)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Anh)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TheLoai)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TheLoai.MaTheLoai)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.MaSach">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="card shadow-sm p-4">
+    <div class="row">
+        <div class="col-md-4 text-center mb-3">
+            <img src="~/Images/@Model.Anh"
+                 class="border rounded shadow-sm"
+                 style="width:220px; height:300px; object-fit:cover;" />
+            <div class="mt-3 text-muted">
+                <i class="bi bi-upc-scan"></i> <strong>Mã sách:</strong> @Model.MaSach
+            </div>
+        </div>
+        <div class="col-md-8">
+            <dl class="row">
+
+                <dt class="col-sm-3 fw-bold">Tên sách</dt>
+                <dd class="col-sm-9">@Model.TenSach</dd>
+
+                <dt class="col-sm-3 fw-bold">Tác giả</dt>
+                <dd class="col-sm-9">@Model.TacGia</dd>
+
+                <dt class="col-sm-3 fw-bold">NXB</dt>
+                <dd class="col-sm-9">@Model.NhaXuatBan</dd>
+
+                <dt class="col-sm-3 fw-bold">Năm XB</dt>
+                <dd class="col-sm-9">@Model.NamXuatBan</dd>
+
+                <dt class="col-sm-3 fw-bold">Giá</dt>
+                <dd class="col-sm-9 text-danger fw-semibold">
+                    @Model.Gia.ToString("#,##0 VNĐ")
+                </dd>
+
+                <dt class="col-sm-3 fw-bold">Số lượng</dt>
+                <dd class="col-sm-9">
+                    @if (Model.SoLuong > 0)
+                    {
+                        <span class="text-success fw-bold">
+                            <i class="bi bi-check-circle"></i> @Model.SoLuong còn
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="text-danger fw-bold">
+                            <i class="bi bi-x-circle"></i> Hết hàng
+                        </span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3 fw-bold">Thể loại</dt>
+                <dd class="col-sm-9">@Model.TheLoai?.TenTheLoai</dd>
+
+                <dt class="col-sm-3 fw-bold">Mô tả</dt>
+                <dd class="col-sm-9">@Model.MoTa</dd>
+
+            </dl>
+
+            <div class="mt-4">
+                <a asp-action="Edit" asp-route-id="@Model.MaSach"
+                   class="btn btn-primary me-2">
+                    <i class="bi bi-pencil-square me-1"></i> Chỉnh sửa
+                </a>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left-circle me-1"></i> Quay lại
+                </a>
+            </div>
+        </div>
+
+    </div>
 </div>
