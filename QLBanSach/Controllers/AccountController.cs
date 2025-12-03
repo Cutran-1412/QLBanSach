@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 using QLBanSach.Data.DonHangRepository;
 using QLBanSach.Data.GioHangRepository;
 using QLBanSach.Data.NguoiDungRepository;
 using QLBanSach.Models;
+using System.Net.Mail;
+using System.Net;
+using System.Text.Json;
 
 namespace QLBanSach.Controllers
 {
@@ -47,7 +51,7 @@ namespace QLBanSach.Controllers
             HttpContext.Session.Clear();
             TempData["Message"] = "Bạn đã đăng xuất";
             TempData["MesseType"] = "error";
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Home");
         }
 
         private string GenerateMaNguoiDung()
@@ -88,13 +92,113 @@ namespace QLBanSach.Controllers
                 TempData["MessageType"] = "warning";
                 return View(user);
             }
-            TempData["Message"] = "Đăng ký thành công!";
-            TempData["MessageType"] = "success";
-            user.MaNguoiDung = GenerateMaNguoiDung();
-            _nguoiDungRepository.Add(user);
-            _nguoiDungRepository.Save();
-            return RedirectToAction("Login");
+            string otp = new Random().Next(100000, 999999).ToString();
+
+            var pendingUser = new PendingUser
+            {
+                TaiKhoan = user.TaiKhoan,
+                MatKhau = user.MatKhau,
+                HoTen = user.HoTen,
+                Email = user.Email,
+                SoDienThoai = user.SoDienThoai,
+                DiaChi = user.DiaChi,
+                VaiTro = user.VaiTro,
+                OTP = otp,
+                OTPExpire = DateTime.Now.AddMinutes(5)
+            };
+            HttpContext.Session.SetString("PendingUser", JsonSerializer.Serialize(pendingUser));
+
+            SendEmailCode(pendingUser.Email, pendingUser.OTP);
+
+            return RedirectToAction("EmailConfirm");
         }
+        private void SendEmailCode(string email,string otp)
+        {
+            var sender = "webbansach2004@gmail.com";
+            var appPassword = "iiee yeon rpet piht";
+            var smtp = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(sender, appPassword),
+                EnableSsl = true,
+            };
+            smtp.Send(sender, email, "Mã xác nhận từ webbansach.com", $"Mã xác nhận của bạn là: {otp} (Hết hạn sau 5 phút)");
+        }
+
+        [HttpGet]
+        public IActionResult EmailConfirm()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EmailConfirm(string code)
+        {
+            var pendingJson = HttpContext.Session.GetString("PendingUser");
+            if(pendingJson == null)
+            {
+                TempData["Message"] = "Không tìm thấy thông tin đăng ký!";
+                TempData["MessageType"] = "warning";
+                return RedirectToAction("Create");
+            }
+            var pendingUser = JsonSerializer.Deserialize<PendingUser>(pendingJson);
+            if(pendingUser.OTPExpire < DateTime.Now)
+            {
+                TempData["Message"] = "Mã OTP đã hết hạn!";
+                TempData["MessageType"] = "warning";
+                return View();
+            }
+            if(pendingUser.OTP == code)
+            {
+                var user = new NguoiDung
+                {
+                    MaNguoiDung = GenerateMaNguoiDung(),
+                    TaiKhoan = pendingUser.TaiKhoan,
+                    MatKhau = pendingUser.MatKhau,
+                    HoTen = pendingUser.HoTen,
+                    Email = pendingUser.Email,
+                    SoDienThoai = pendingUser.SoDienThoai,
+                    DiaChi = pendingUser.DiaChi,
+                    VaiTro = pendingUser.VaiTro
+                };
+                _nguoiDungRepository.Add(user);
+                _nguoiDungRepository.Save();
+                HttpContext.Session.Remove("PendingUser");
+                TempData["Message"] = "Xác nhận email thành công! Bạn có thể đăng nhập.";
+                TempData["MessageType"] = "success";
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                TempData["Message"] = "Mã OTP không đúng!";
+                TempData["MessageType"] = "warning";
+                return View();
+            }
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ResendOTP()
+        {
+            var pendingJson = HttpContext.Session.GetString("PendingUser");
+            if (pendingJson == null)
+            {
+                TempData["Message"] = "Không tìm thấy thông tin đăng ký!";
+                TempData["MessageType"] = "warning";
+                return RedirectToAction("Create");
+            }
+            var pendingUser = JsonSerializer.Deserialize<PendingUser>(pendingJson);
+            string otp = new Random().Next(100000, 999999).ToString();
+            pendingUser.OTP = otp;
+            pendingUser.OTPExpire = DateTime.Now.AddMinutes(5);
+            HttpContext.Session.SetString("PendingUser", JsonSerializer.Serialize(pendingUser));
+            SendEmailCode(pendingUser.Email, pendingUser.OTP);
+            TempData["Message"] = "Vui lòng kiểm tra email để nhận mã xác nhận!";
+            TempData["MessageType"] = "success";
+            return RedirectToAction("EmailConfirm");
+        }
+
         public IActionResult Details(string id)
         {
             var nguoidung = _nguoiDungRepository.GetById(id);
@@ -126,12 +230,25 @@ namespace QLBanSach.Controllers
                 TempData["MessageType"] = "warning";
                 return View();
             }
-            string newPassword = "123456";
+            string newPassword = Guid.NewGuid().ToString().Substring(0, 8);
             user.MatKhau = newPassword;
             _nguoiDungRepository.Save();
+            SendEmail(email, newPassword);
             TempData["Message"] = "Mật khẩu mới đã được gửi đến Email!";
             TempData["MessageType"] = "success";
             return RedirectToAction("Login");
+        }
+        private void SendEmail(string email, string newPassword)
+        {
+            var sender = "webbansach2004@gmail.com";
+            var appPassword = "iiee yeon rpet piht";
+            var smtp = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(sender, appPassword),
+                EnableSsl = true,
+            };
+            smtp.Send(sender, email, "Mật khẩu mới từ Webbansach.com", $"Mật khẩu mới của bạn là: {newPassword}");
         }
         [HttpGet]
         public IActionResult Edit(string id)

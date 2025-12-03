@@ -1,0 +1,857 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\QLBanSach.bundle.scp.css",
+      "PackagePath": "staticwebassets\\QLBanSach.zdung2cdfa.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Avatar\\Avatar.jpg",
+      "PackagePath": "staticwebassets\\Avatar\\Avatar.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Icon\\An.png",
+      "PackagePath": "staticwebassets\\Icon\\An.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Icon\\Hien.png",
+      "PackagePath": "staticwebassets\\Icon\\Hien.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\3000words.jpg",
+      "PackagePath": "staticwebassets\\Images\\3000words.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\7_thoi_quen_hieu_qua.jpg",
+      "PackagePath": "staticwebassets\\Images\\7_thoi_quen_hieu_qua.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\BusinessEnglish.jpg",
+      "PackagePath": "staticwebassets\\Images\\BusinessEnglish.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\KT1.png",
+      "PackagePath": "staticwebassets\\Images\\KT1.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\KT10.png",
+      "PackagePath": "staticwebassets\\Images\\KT10.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\KT2.png",
+      "PackagePath": "staticwebassets\\Images\\KT2.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\KT3.png",
+      "PackagePath": "staticwebassets\\Images\\KT3.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\KT4.png",
+      "PackagePath": "staticwebassets\\Images\\KT4.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\KT5.png",
+      "PackagePath": "staticwebassets\\Images\\KT5.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\KT6.png",
+      "PackagePath": "staticwebassets\\Images\\KT6.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\KT7.png",
+      "PackagePath": "staticwebassets\\Images\\KT7.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\KT8.png",
+      "PackagePath": "staticwebassets\\Images\\KT8.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\KT9.png",
+      "PackagePath": "staticwebassets\\Images\\KT9.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\NN1.png",
+      "PackagePath": "staticwebassets\\Images\\NN1.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\NN10.png",
+      "PackagePath": "staticwebassets\\Images\\NN10.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\NN2.png",
+      "PackagePath": "staticwebassets\\Images\\NN2.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\NN3.png",
+      "PackagePath": "staticwebassets\\Images\\NN3.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\NN4.png",
+      "PackagePath": "staticwebassets\\Images\\NN4.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\NN5.png",
+      "PackagePath": "staticwebassets\\Images\\NN5.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\NN6.png",
+      "PackagePath": "staticwebassets\\Images\\NN6.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\NN7.png",
+      "PackagePath": "staticwebassets\\Images\\NN7.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\NN8.png",
+      "PackagePath": "staticwebassets\\Images\\NN8.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\NN9.png",
+      "PackagePath": "staticwebassets\\Images\\NN9.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\PTBT1.png",
+      "PackagePath": "staticwebassets\\Images\\PTBT1.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\PTBT10.png",
+      "PackagePath": "staticwebassets\\Images\\PTBT10.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\PTBT2.png",
+      "PackagePath": "staticwebassets\\Images\\PTBT2.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\PTBT3.png",
+      "PackagePath": "staticwebassets\\Images\\PTBT3.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\PTBT4.png",
+      "PackagePath": "staticwebassets\\Images\\PTBT4.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\PTBT5.png",
+      "PackagePath": "staticwebassets\\Images\\PTBT5.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\PTBT6.png",
+      "PackagePath": "staticwebassets\\Images\\PTBT6.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\PTBT7.png",
+      "PackagePath": "staticwebassets\\Images\\PTBT7.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\PTBT8.png",
+      "PackagePath": "staticwebassets\\Images\\PTBT8.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\PTBT9.png",
+      "PackagePath": "staticwebassets\\Images\\PTBT9.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TN1.png",
+      "PackagePath": "staticwebassets\\Images\\TN1.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TN10.png",
+      "PackagePath": "staticwebassets\\Images\\TN10.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TN2.png",
+      "PackagePath": "staticwebassets\\Images\\TN2.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TN3.png",
+      "PackagePath": "staticwebassets\\Images\\TN3.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TN4.png",
+      "PackagePath": "staticwebassets\\Images\\TN4.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TN5.png",
+      "PackagePath": "staticwebassets\\Images\\TN5.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TN6.png",
+      "PackagePath": "staticwebassets\\Images\\TN6.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TN7.png",
+      "PackagePath": "staticwebassets\\Images\\TN7.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TN8.png",
+      "PackagePath": "staticwebassets\\Images\\TN8.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TN9.png",
+      "PackagePath": "staticwebassets\\Images\\TN9.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TTDS1.png",
+      "PackagePath": "staticwebassets\\Images\\TTDS1.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TTDS10.png",
+      "PackagePath": "staticwebassets\\Images\\TTDS10.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TTDS2.png",
+      "PackagePath": "staticwebassets\\Images\\TTDS2.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TTDS3.png",
+      "PackagePath": "staticwebassets\\Images\\TTDS3.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TTDS4.png",
+      "PackagePath": "staticwebassets\\Images\\TTDS4.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TTDS5.png",
+      "PackagePath": "staticwebassets\\Images\\TTDS5.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TTDS6.png",
+      "PackagePath": "staticwebassets\\Images\\TTDS6.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TTDS7.png",
+      "PackagePath": "staticwebassets\\Images\\TTDS7.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TTDS8.png",
+      "PackagePath": "staticwebassets\\Images\\TTDS8.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\TTDS9.png",
+      "PackagePath": "staticwebassets\\Images\\TTDS9.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH1.png",
+      "PackagePath": "staticwebassets\\Images\\VH1.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH10.png",
+      "PackagePath": "staticwebassets\\Images\\VH10.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH11.png",
+      "PackagePath": "staticwebassets\\Images\\VH11.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH12.png",
+      "PackagePath": "staticwebassets\\Images\\VH12.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH13.png",
+      "PackagePath": "staticwebassets\\Images\\VH13.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH14.png",
+      "PackagePath": "staticwebassets\\Images\\VH14.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH15.png",
+      "PackagePath": "staticwebassets\\Images\\VH15.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH16.png",
+      "PackagePath": "staticwebassets\\Images\\VH16.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH17.png",
+      "PackagePath": "staticwebassets\\Images\\VH17.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH18.png",
+      "PackagePath": "staticwebassets\\Images\\VH18.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH19.png",
+      "PackagePath": "staticwebassets\\Images\\VH19.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH2.png",
+      "PackagePath": "staticwebassets\\Images\\VH2.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH20.png",
+      "PackagePath": "staticwebassets\\Images\\VH20.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH3.png",
+      "PackagePath": "staticwebassets\\Images\\VH3.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH4.png",
+      "PackagePath": "staticwebassets\\Images\\VH4.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH5.png",
+      "PackagePath": "staticwebassets\\Images\\VH5.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH6.png",
+      "PackagePath": "staticwebassets\\Images\\VH6.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH7.png",
+      "PackagePath": "staticwebassets\\Images\\VH7.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH8.png",
+      "PackagePath": "staticwebassets\\Images\\VH8.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\VH9.png",
+      "PackagePath": "staticwebassets\\Images\\VH9.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\benh_hoc_noi_khoa.jpg",
+      "PackagePath": "staticwebassets\\Images\\benh_hoc_noi_khoa.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\benh_truyen_nhiem.jpg",
+      "PackagePath": "staticwebassets\\Images\\benh_truyen_nhiem.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\bo_luat_ds_2015.jpg",
+      "PackagePath": "staticwebassets\\Images\\bo_luat_ds_2015.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\bo_luat_hs_2015.jpg",
+      "PackagePath": "staticwebassets\\Images\\bo_luat_hs_2015.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\chan_doan_hinh_anh.jpg",
+      "PackagePath": "staticwebassets\\Images\\chan_doan_hinh_anh.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\chatgpt_thucchien.jpg",
+      "PackagePath": "staticwebassets\\Images\\chatgpt_thucchien.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\chien_tranh_vn_1945_1975.jpg",
+      "PackagePath": "staticwebassets\\Images\\chien_tranh_vn_1945_1975.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\chu_nghia_mac_lenin.jpg",
+      "PackagePath": "staticwebassets\\Images\\chu_nghia_mac_lenin.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\cuong_linh_xay_dung.png",
+      "PackagePath": "staticwebassets\\Images\\cuong_linh_xay_dung.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\dai_viet_su_ky_toan_thu.jpg",
+      "PackagePath": "staticwebassets\\Images\\dai_viet_su_ky_toan_thu.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\danh_thuc_con_nguoi_phi_thuong.jpg",
+      "PackagePath": "staticwebassets\\Images\\danh_thuc_con_nguoi_phi_thuong.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\dieu_duong_co_ban.jpg",
+      "PackagePath": "staticwebassets\\Images\\dieu_duong_co_ban.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\dinh_duong_suc_khoe.png",
+      "PackagePath": "staticwebassets\\Images\\dinh_duong_suc_khoe.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\dung_lua_chon_an_nhan_khi_con_tre.jpg",
+      "PackagePath": "staticwebassets\\Images\\dung_lua_chon_an_nhan_khi_con_tre.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\duoc_ly_hoc.jpg",
+      "PackagePath": "staticwebassets\\Images\\duoc_ly_hoc.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\duong_kach_menh.jpg",
+      "PackagePath": "staticwebassets\\Images\\duong_kach_menh.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\eng1.jpg",
+      "PackagePath": "staticwebassets\\Images\\eng1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\eng2.jpg",
+      "PackagePath": "staticwebassets\\Images\\eng2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\eng_vn1.jpeg",
+      "PackagePath": "staticwebassets\\Images\\eng_vn1.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\eng_vn2.jpg",
+      "PackagePath": "staticwebassets\\Images\\eng_vn2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\giai_phau_nguoi.jpg",
+      "PackagePath": "staticwebassets\\Images\\giai_phau_nguoi.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\han1.jpg",
+      "PackagePath": "staticwebassets\\Images\\han1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\hcm_toan_tap_t1.jpg",
+      "PackagePath": "staticwebassets\\Images\\hcm_toan_tap_t1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\hien_phap_2013.jpg",
+      "PackagePath": "staticwebassets\\Images\\hien_phap_2013.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\ielts_vocab.jpg",
+      "PackagePath": "staticwebassets\\Images\\ielts_vocab.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\java_co_ban.jpg",
+      "PackagePath": "staticwebassets\\Images\\java_co_ban.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\kheo_an_noi_se_co_duoc_thien_ha.jpg",
+      "PackagePath": "staticwebassets\\Images\\kheo_an_noi_se_co_duoc_thien_ha.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\khoahoccaptoc_ai.png",
+      "PackagePath": "staticwebassets\\Images\\khoahoccaptoc_ai.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\lam_chu_tu_duy_thay_doi_van_menh.jpg",
+      "PackagePath": "staticwebassets\\Images\\lam_chu_tu_duy_thay_doi_van_menh.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\lich_su_cac_trieu_dai.jpg",
+      "PackagePath": "staticwebassets\\Images\\lich_su_cac_trieu_dai.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\lich_su_dang_csvn.jpg",
+      "PackagePath": "staticwebassets\\Images\\lich_su_dang_csvn.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\lich_su_dong_nam_a.jpg",
+      "PackagePath": "staticwebassets\\Images\\lich_su_dong_nam_a.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\lich_su_the_gioi_co_dai.jpg",
+      "PackagePath": "staticwebassets\\Images\\lich_su_the_gioi_co_dai.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\lich_su_the_gioi_hien_dai.jpg",
+      "PackagePath": "staticwebassets\\Images\\lich_su_the_gioi_hien_dai.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\lich_su_van_minh_the_gioi.jpg",
+      "PackagePath": "staticwebassets\\Images\\lich_su_van_minh_the_gioi.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\lich_su_viet_nam.jpg",
+      "PackagePath": "staticwebassets\\Images\\lich_su_viet_nam.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\lich_su_vn_den_the_ky_xix.jpg",
+      "PackagePath": "staticwebassets\\Images\\lich_su_vn_den_the_ky_xix.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\luat_bvmt_2020.png",
+      "PackagePath": "staticwebassets\\Images\\luat_bvmt_2020.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\luat_dat_dai.jpg",
+      "PackagePath": "staticwebassets\\Images\\luat_dat_dai.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\luat_dn_2020.jpg",
+      "PackagePath": "staticwebassets\\Images\\luat_dn_2020.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\luat_gd_2019.png",
+      "PackagePath": "staticwebassets\\Images\\luat_gd_2019.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\luat_hn_gd.jpg",
+      "PackagePath": "staticwebassets\\Images\\luat_hn_gd.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\luat_ld_2019.jpg",
+      "PackagePath": "staticwebassets\\Images\\luat_ld_2019.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\luat_pctn.jpg",
+      "PackagePath": "staticwebassets\\Images\\luat_pctn.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\mos_excel2019.jpg",
+      "PackagePath": "staticwebassets\\Images\\mos_excel2019.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\mos_powerpoint2019.jpg",
+      "PackagePath": "staticwebassets\\Images\\mos_powerpoint2019.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\nghe_thuat_song_tich_cuc.jpg",
+      "PackagePath": "staticwebassets\\Images\\nghe_thuat_song_tich_cuc.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\nguyen_ly_mac_lenin.jpg",
+      "PackagePath": "staticwebassets\\Images\\nguyen_ly_mac_lenin.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\nha_nuoc_phap_quyen.jpg",
+      "PackagePath": "staticwebassets\\Images\\nha_nuoc_phap_quyen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\nhat1.jpg",
+      "PackagePath": "staticwebassets\\Images\\nhat1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\python_co_ban.webp",
+      "PackagePath": "staticwebassets\\Images\\python_co_ban.webp"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\quang_ganh_lo_di_va_vui_song.jpg",
+      "PackagePath": "staticwebassets\\Images\\quang_ganh_lo_di_va_vui_song.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\sinh_ly_hoc.jpg",
+      "PackagePath": "staticwebassets\\Images\\sinh_ly_hoc.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\so_cuu_cap_cuu.webp",
+      "PackagePath": "staticwebassets\\Images\\so_cuu_cap_cuu.webp"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\sql_server.png",
+      "PackagePath": "staticwebassets\\Images\\sql_server.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\suc_manh_cua_thoi_quen.jpg",
+      "PackagePath": "staticwebassets\\Images\\suc_manh_cua_thoi_quen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\thuc_tinh_muc_dich_song.jpg",
+      "PackagePath": "staticwebassets\\Images\\thuc_tinh_muc_dich_song.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\tin_hoc_co_ban.jpg",
+      "PackagePath": "staticwebassets\\Images\\tin_hoc_co_ban.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\tin_hoc_van_phong.png",
+      "PackagePath": "staticwebassets\\Images\\tin_hoc_van_phong.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\toi_tai_gioi_ban_cung_the.jpg",
+      "PackagePath": "staticwebassets\\Images\\toi_tai_gioi_ban_cung_the.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\trung1.jpg",
+      "PackagePath": "staticwebassets\\Images\\trung1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\tu_tuong_hcm.png",
+      "PackagePath": "staticwebassets\\Images\\tu_tuong_hcm.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\tu_tuong_hcm_dao_duc.jpg",
+      "PackagePath": "staticwebassets\\Images\\tu_tuong_hcm_dao_duc.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\van_kien_dai_hoi_xiii.png",
+      "PackagePath": "staticwebassets\\Images\\van_kien_dai_hoi_xiii.png"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\viet_su_giai_thoai.jpg",
+      "PackagePath": "staticwebassets\\Images\\viet_su_giai_thoai.jpg"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\word2019.webp",
+      "PackagePath": "staticwebassets\\Images\\word2019.webp"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\Images\\y_hoc_co_truyen.webp",
+      "PackagePath": "staticwebassets\\Images\\y_hoc_co_truyen.webp"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\css\\Account.css",
+      "PackagePath": "staticwebassets\\css\\Account.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\css\\GioHang.css",
+      "PackagePath": "staticwebassets\\css\\GioHang.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\css\\Layout.css",
+      "PackagePath": "staticwebassets\\css\\Layout.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\css\\index.css",
+      "PackagePath": "staticwebassets\\css\\index.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.QLBanSach.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.QLBanSach.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.QLBanSach.props",
+      "PackagePath": "build\\QLBanSach.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.QLBanSach.props",
+      "PackagePath": "buildMultiTargeting\\QLBanSach.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.QLBanSach.props",
+      "PackagePath": "buildTransitive\\QLBanSach.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

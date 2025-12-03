@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projeck\\QLBanSach\\QLBanSach\\QLBanSach.csproj": {}
+    "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\QLBanSach.csproj": {}
   },
   "projects": {
-    "D:\\Projeck\\QLBanSach\\QLBanSach\\QLBanSach.csproj": {
+    "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\QLBanSach.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projeck\\QLBanSach\\QLBanSach\\QLBanSach.csproj",
+        "projectUniqueName": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\QLBanSach.csproj",
         "projectName": "QLBanSach",
-        "projectPath": "D:\\Projeck\\QLBanSach\\QLBanSach\\QLBanSach.csproj",
-        "packagesPath": "C:\\Users\\Osiris\\.nuget\\packages\\",
-        "outputPath": "D:\\Projeck\\QLBanSach\\QLBanSach\\obj\\",
+        "projectPath": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\QLBanSach.csproj",
+        "packagesPath": "C:\\Users\\quycu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\quycu\\Desktop\\QLBanSach\\QLBanSach\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Osiris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\quycu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -25,7 +25,8 @@
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
+          "C:\\Users\\quycu\\Desktop\\0 Entity package": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -43,7 +44,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net6.0": {
@@ -97,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
