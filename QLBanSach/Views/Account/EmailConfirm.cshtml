@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Xác thực Email";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+
+<h2 class="text-center mb-4 fw-bold" style="color:#0d6efd;">Xác thực tài khoản</h2>
+
+<form asp-action="EmailConfirm" method="post" class="mt-3">
+
+    <div class="mb-3">
+        <label class="form-label fw-semibold">Nhập mã xác minh được gửi về Email của bạn</label>
+        <input name="code" type="number" class="form-control" placeholder="Nhập mã xác minh..." required />
+    </div>
+
+    <button type="submit" class="btn w-100 py-2"
+            style="background:#0d6efd; color:white; border-radius:12px;">
+        Xác nhận
+    </button>
+</form>
+<br />
+<form asp-action="ResendOTP" method="post">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn w-100 py-2"
+            style="background:#0d6efd; color:white; border-radius:12px;">
+        Gửi lại OTP
+    </button>
+</form>
+
