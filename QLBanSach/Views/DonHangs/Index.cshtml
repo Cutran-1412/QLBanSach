@@ -38,19 +38,11 @@
 
             <div class="col-md-3">
                 <label class="fw-semibold mb-1">Mã người dùng</label>
-                <select name="maNguoiDung" class="form-select">
-                    <option value="">-- Chọn người dùng --</option>
-                    @foreach (var user in ViewBag.NguoiDung)
-                    {
-                        if (!user.VaiTro)
-                        {
-                            <option value="@user.MaNguoiDung"
-                                selected="@(Context.Request.Query["maNguoiDung"] == user.MaNguoiDung)">
-                                @user.MaNguoiDung - @user.HoTen
-                            </option>
-                        }
-                    }
-                </select>
+                <input type="text"
+                   name="maNguoiDung"
+                   class="form-control"
+                   placeholder="Nhập mã người dùng"
+                   value="@Context.Request.Query["maNguoiDung"]" />
             </div>
 
             <div class="col-md-3">
@@ -76,21 +68,17 @@
                 </select>
             </div>
 
-            <div class="col-md-2">
+           <div class="col-md-2">
                 <label class="fw-semibold mb-1">Từ ngày</label>
                 <input type="date" name="tuNgay"
-                       value="@(String.IsNullOrEmpty(Context.Request.Query["tuNgay"])
-                                ? DateTime.Now.ToString("yyyy-MM-dd")
-                                : Context.Request.Query["tuNgay"])"
+                       value="@Context.Request.Query["tuNgay"]"
                        class="form-control" />
             </div>
 
             <div class="col-md-2">
                 <label class="fw-semibold mb-1">Đến ngày</label>
                 <input type="date" name="denNgay"
-                       value="@(String.IsNullOrEmpty(Context.Request.Query["denNgay"])
-                                ? DateTime.Now.ToString("yyyy-MM-dd")
-                                : Context.Request.Query["denNgay"])"
+                       value="@Context.Request.Query["denNgay"]"
                        class="form-control" />
             </div>
 

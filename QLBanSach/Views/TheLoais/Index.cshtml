@@ -14,6 +14,39 @@
             <i class="bi bi-plus-circle"></i> Thêm thể loại
         </a>
     </div>
+    <form asp-action="Index" method="get" class="card p-3 shadow-sm rounded-4 mb-3">
+        <div class="row g-2">
+
+            <div class="col-md-3">
+                <label class="fw-semibold mb-1">Mã thể loại</label>
+                <input type="text" name="maTL"
+                       class="form-control"
+                       placeholder="Nhập mã thể loại"
+                       value="@Context.Request.Query["maTL"]" />
+            </div>
+
+            <div class="col-md-3">
+                <label class="fw-semibold mb-1">Tên thể loại</label>
+                <input type="text" name="tenTL"
+                       class="form-control"
+                       placeholder="Nhập tên thể loại"
+                       value="@Context.Request.Query["tenTL"]" />
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end">
+                <button class="btn btn-primary w-100 fw-semibold">
+                    <i class="bi bi-search"></i> Tìm
+                </button>
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end">
+                <a asp-action="Index" class="btn btn-secondary w-100 fw-semibold">
+                    <i class="bi bi-arrow-repeat"></i> Reset
+                </a>
+            </div>
+
+        </div>
+    </form>
 
     <div class="card shadow-sm rounded-4 p-3">
 

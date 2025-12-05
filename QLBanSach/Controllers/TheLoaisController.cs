@@ -21,23 +21,38 @@ namespace QLBanSach.Controllers
         }
 
         // GET: TheLoais
-        public IActionResult Index(int page = 1, int pageSize =10)
+        public IActionResult Index(string? maTL, string? tenTL, int page = 1, int pageSize = 10)
         {
-            var theloai = _theLoaiRepository.GetAll().ToList();
+            var theloai = _theLoaiRepository.GetAll().AsQueryable();
 
-            int totalItems = theloai.Count;
+            // Lọc theo mã thể loại
+            if (!string.IsNullOrWhiteSpace(maTL))
+                theloai = theloai.Where(t => t.MaTheLoai.ToString().Contains(maTL));
+
+            // Lọc theo tên thể loại
+            if (!string.IsNullOrWhiteSpace(tenTL))
+                theloai = theloai.Where(t => t.TenTheLoai.Contains(tenTL));
+
+            // Phân trang
+            int totalItems = theloai.Count();
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
             var items = theloai
+                .OrderBy(t => t.MaTheLoai)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
+            // Trả lại dữ liệu tìm kiếm để view giữ giá trị
             ViewBag.Page = page;
             ViewBag.TotalPages = totalPages;
 
+            ViewBag.MaTL = maTL;
+            ViewBag.TenTL = tenTL;
+
             return View(items);
         }
+
 
         // GET: TheLoais/Details/5
         public IActionResult Details(string id)

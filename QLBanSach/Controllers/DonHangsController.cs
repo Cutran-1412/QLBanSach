@@ -31,12 +31,8 @@ namespace QLBanSach.Controllers
 
 
 
-
-
-
-
         // GET: DonHangs
-        public IActionResult Index(string maNguoiDung, string trangThai, DateTime? tuNgay, DateTime? denNgay, int page = 1, int pageSize = 10)
+        public IActionResult Index(string? maNguoiDung, string? trangThai, DateTime? tuNgay, DateTime? denNgay, int page = 1, int pageSize = 10)
         {
             ViewBag.NguoiDung = _nguoiDungRepository.GetAll();
 

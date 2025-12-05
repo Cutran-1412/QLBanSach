@@ -10371,7 +10371,11 @@
         "net6.0"
       ],
       "sources": {
+<<<<<<< HEAD
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+=======
         "C:\\Users\\quycu\\Desktop\\0 Entity package": {},
+>>>>>>> 49a886007979403f0d898eb2946616374f504a31
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
